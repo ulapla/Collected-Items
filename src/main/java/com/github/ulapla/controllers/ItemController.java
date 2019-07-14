@@ -21,10 +21,15 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/all")
+    @GetMapping("/get/all")
     @ResponseBody
     public List<ItemDto> allItems(){
         return itemService.findAll();
+    }
+
+    @GetMapping("/all")
+    public String printItems(){
+        return "all_item";
     }
 
     @GetMapping("/add")
