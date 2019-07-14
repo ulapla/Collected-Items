@@ -29,7 +29,7 @@ public class ItemDto {
     }
 
     private static String apply(Location location) {
-        return location.getPlace() + location.getPosition();
+        return location.getPlace() + " " + location.getPosition();
     }
 
     public Long getId() {

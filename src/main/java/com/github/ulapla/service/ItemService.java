@@ -6,6 +6,9 @@ import com.github.ulapla.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ItemService {
 
@@ -14,6 +17,12 @@ public class ItemService {
     @Autowired
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
+    }
+
+    public List<ItemDto> findAll(){
+        return itemRepository.findAll().stream()
+                .map(ItemDto::new)
+                .collect(Collectors.toList());
     }
 
     public void createItem(ItemDto itemDto){
