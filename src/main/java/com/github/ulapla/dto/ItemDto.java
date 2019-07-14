@@ -1,28 +1,36 @@
-package com.github.ulapla.model;
+package com.github.ulapla.dto;
 
-import javax.persistence.*;
-import java.util.Set;
+import com.github.ulapla.model.Item;
+import com.github.ulapla.model.Location;
 
-@Entity
-public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ItemDto {
+
     private Long id;
-    @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
     private String type;
     private String description;
     private int quantity;
     private String filePath;
-    @ManyToMany
-    @JoinTable(
-            name = "items_locations",
-            joinColumns = @JoinColumn(name = "item_id"),
-            inverseJoinColumns = @JoinColumn(name = "location_id"))
-    private Set<Location> locations;
+    private String[] locations;
 
+    public ItemDto() {
+    }
 
+    public ItemDto(Item that) {
+        this.id = that.getId();
+        this.name = that.getName();
+        this.type = that.getType();
+        this.description = that.getDescription();
+        this.quantity = that.getQuantity();
+        this.filePath = that.getFilePath();
+        this.locations = that.getLocations().stream()
+                .map(ItemDto::apply)
+                .toArray(String[]::new);
+    }
+
+    private static String apply(Location location) {
+        return location.getPlace() + location.getPosition();
+    }
 
     public Long getId() {
         return id;
@@ -72,11 +80,11 @@ public class Item {
         this.filePath = filePath;
     }
 
-    public Set<Location> getLocations() {
+    public String[] getLocations() {
         return locations;
     }
 
-    public void setLocations(Set<Location> locations) {
+    public void setLocations(String[] locations) {
         this.locations = locations;
     }
 }

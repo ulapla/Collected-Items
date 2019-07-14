@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<!--<p th:text="'Hello, '  + '!'" />-->
+<form method="post" action="/item/add" modelAttribute="itemDto">
+    <p>Nazwa: <input path="name"/></p>
+    <p>Rodzaj: <input path="type"/></p>
+    <p>Opis: <input path="description"/></p>
+    <!--    <p>Ilość: <input path="quantity" /></p><p><select path="location" items="${locations}" multiple="false"/></p>-->
+    <p><button type="submit" value="Save">Save</button></p>
+</form>
+
+</body>
+</html>
