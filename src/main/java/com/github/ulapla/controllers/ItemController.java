@@ -1,8 +1,9 @@
 package com.github.ulapla.controllers;
 
 import com.github.ulapla.dto.ItemDto;
-import com.github.ulapla.model.Item;
+import com.github.ulapla.dto.LocationDto;
 import com.github.ulapla.service.ItemService;
+import com.github.ulapla.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,12 @@ import java.util.List;
 public class ItemController {
 
     private ItemService itemService;
+    private LocationService locationService;
 
     @Autowired
-    public ItemController(ItemService itemService) {
+    public ItemController(ItemService itemService, LocationService locationService) {
         this.itemService = itemService;
+        this.locationService = locationService;
     }
 
     @GetMapping("/get/all")
@@ -28,13 +31,20 @@ public class ItemController {
     }
 
     @GetMapping("/all")
-    public String printItems(){
+    public String printItems(Model model){
+        model.addAttribute("items", itemService.findAll());
         return "all_item";
     }
 
     @GetMapping("/add")
-    public String addItem(){
+    public String addItem(Model model){
+        model.addAttribute("itemDto",new ItemDto());
         return "add_item";
+    }
+
+    @ModelAttribute("locations")
+    public List<LocationDto> locations(){
+        return locationService.findAll();
     }
 
     @PostMapping("/add")

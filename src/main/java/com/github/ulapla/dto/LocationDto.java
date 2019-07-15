@@ -19,7 +19,7 @@ public class LocationDto {
         this.place = that.getPlace();
         this.position = that.getPosition();
         this.items = that.getItemLocations().stream()
-                .map(itemLocation -> itemLocation.getItem().getType() + " " + itemLocation.getItem().getName())
+                .map(itemLocation -> itemLocation.getItem().getCategory().getName() + " " + itemLocation.getItem().getName())
                 .toArray(String[]::new);
 
     }

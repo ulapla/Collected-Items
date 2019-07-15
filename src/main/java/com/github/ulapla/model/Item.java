@@ -10,13 +10,14 @@ public class Item {
     private Long id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String type;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
     private String description;
     private int quantity;
     private String filePath;
     @OneToMany(mappedBy = "item")
-    private Set<ItemLocation> ItemLocations;
+    private Set<ItemLocation> itemLocations;
 
 
     public Long getId() {
@@ -33,14 +34,6 @@ public class Item {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getDescription() {
@@ -68,10 +61,19 @@ public class Item {
     }
 
     public Set<ItemLocation> getItemLocations() {
-        return ItemLocations;
+        return itemLocations;
     }
 
     public void setItemLocations(Set<ItemLocation> itemLocations) {
-        ItemLocations = itemLocations;
+        this.itemLocations = itemLocations;
+    }
+
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -12,7 +12,7 @@ public class Location {
     private String place;
     private String position;
     @OneToMany(mappedBy = "location")
-    private Set<ItemLocation> ItemLocations;
+    private Set<ItemLocation> itemLocations;
 
 
 
@@ -40,11 +40,12 @@ public class Location {
         this.position = position;
     }
 
+
     public Set<ItemLocation> getItemLocations() {
-        return ItemLocations;
+        return itemLocations;
     }
 
     public void setItemLocations(Set<ItemLocation> itemLocations) {
-        ItemLocations = itemLocations;
+        this.itemLocations = itemLocations;
     }
 }

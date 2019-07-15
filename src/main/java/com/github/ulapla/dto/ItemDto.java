@@ -11,7 +11,7 @@ public class ItemDto {
     private String description;
     private int quantity;
     private String filePath;
-    private String[] locations;
+    private String[] location;
 
     public ItemDto() {
     }
@@ -19,11 +19,11 @@ public class ItemDto {
     public ItemDto(Item that) {
         this.id = that.getId();
         this.name = that.getName();
-        this.type = that.getType();
+        this.type = that.getCategory().getName();
         this.description = that.getDescription();
         this.quantity = that.getQuantity();
         this.filePath = that.getFilePath();
-        this.locations = that.getItemLocations().stream()
+        this.location = that.getItemLocations().stream()
                 .map(itemLocation -> itemLocation.getLocation().getPlace() + " " + itemLocation.getLocation().getPosition())
                 .toArray(String[]::new);
     }
@@ -78,10 +78,10 @@ public class ItemDto {
     }
 
     public String[] getLocations() {
-        return locations;
+        return location;
     }
 
     public void setLocations(String[] locations) {
-        this.locations = locations;
+        this.location = locations;
     }
 }
