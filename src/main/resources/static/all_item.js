@@ -1,5 +1,5 @@
 $(function () {
-    let tr = $("table");
+    let table = $("table");
 
     let readAll = function () {
         $.ajax({
@@ -14,7 +14,7 @@ $(function () {
                                     <td>${item.quantity}</td> 
                                     <td>${item.locations}</td>
                               </tr>  `);
-                tr.append(newTr);
+                table.append(newTr);
             });
         }).fail(function () {
             console.log("zle")

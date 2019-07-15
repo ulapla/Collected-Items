@@ -8,8 +8,8 @@ public class LocationDto {
     private Long id;
     private String place;
     private String position;
-    private int quantity;
     private String[] items;
+
 
     public LocationDto() {
     }
@@ -18,16 +18,12 @@ public class LocationDto {
         this.id = that.getId();
         this.place = that.getPlace();
         this.position = that.getPosition();
-        this.quantity = that.getQuantity();
-        this.items = that.getItems().stream()
-                .map(LocationDto::apply)
+        this.items = that.getItemLocations().stream()
+                .map(itemLocation -> itemLocation.getItem().getType() + " " + itemLocation.getItem().getName())
                 .toArray(String[]::new);
 
     }
 
-    private static String apply(Item item) {
-        return item.getName() + " " + item.getType();
-    }
 
     public Long getId() {
         return id;
@@ -51,14 +47,6 @@ public class LocationDto {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public String[] getItems() {

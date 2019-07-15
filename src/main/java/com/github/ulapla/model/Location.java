@@ -11,9 +11,8 @@ public class Location {
     @Column(nullable = false)
     private String place;
     private String position;
-    private int quantity;
-    @ManyToMany(mappedBy = "locations")
-    private Set<Item> items;
+    @OneToMany(mappedBy = "location")
+    private Set<ItemLocation> ItemLocations;
 
 
 
@@ -41,19 +40,11 @@ public class Location {
         this.position = position;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public Set<ItemLocation> getItemLocations() {
+        return ItemLocations;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public Set<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(Set<Item> items) {
-        this.items = items;
+    public void setItemLocations(Set<ItemLocation> itemLocations) {
+        ItemLocations = itemLocations;
     }
 }

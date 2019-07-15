@@ -15,13 +15,8 @@ public class Item {
     private String description;
     private int quantity;
     private String filePath;
-    @ManyToMany
-    @JoinTable(
-            name = "items_locations",
-            joinColumns = @JoinColumn(name = "item_id"),
-            inverseJoinColumns = @JoinColumn(name = "location_id"))
-    private Set<Location> locations;
-
+    @OneToMany(mappedBy = "item")
+    private Set<ItemLocation> ItemLocations;
 
 
     public Long getId() {
@@ -72,11 +67,11 @@ public class Item {
         this.filePath = filePath;
     }
 
-    public Set<Location> getLocations() {
-        return locations;
+    public Set<ItemLocation> getItemLocations() {
+        return ItemLocations;
     }
 
-    public void setLocations(Set<Location> locations) {
-        this.locations = locations;
+    public void setItemLocations(Set<ItemLocation> itemLocations) {
+        ItemLocations = itemLocations;
     }
 }

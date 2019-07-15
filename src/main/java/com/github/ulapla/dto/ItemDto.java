@@ -23,14 +23,11 @@ public class ItemDto {
         this.description = that.getDescription();
         this.quantity = that.getQuantity();
         this.filePath = that.getFilePath();
-        this.locations = that.getLocations().stream()
-                .map(ItemDto::apply)
+        this.locations = that.getItemLocations().stream()
+                .map(itemLocation -> itemLocation.getLocation().getPlace() + " " + itemLocation.getLocation().getPosition())
                 .toArray(String[]::new);
     }
 
-    private static String apply(Location location) {
-        return location.getPlace() + " " + location.getPosition();
-    }
 
     public Long getId() {
         return id;
