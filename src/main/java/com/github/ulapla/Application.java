@@ -13,19 +13,19 @@ import springfox.documentation.spring.web.plugins.Docket;
 import static springfox.documentation.builders.PathSelectors.regex;
 
 @SpringBootApplication
-public class Application extends WebMvcConfigurerAdapter {
+public class Application /*extends WebMvcConfigurerAdapter*/ {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
 
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedOrigins("http://localhost");
-    }
+//    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//        registry.addMapping("/**")
+//                .allowedMethods("GET", "POST", "PUT", "DELETE")
+//                .allowedOrigins("http://localhost");
+//    }
 
     @Bean
     public Docket newsApi() {
@@ -33,7 +33,7 @@ public class Application extends WebMvcConfigurerAdapter {
                // .groupName("Book API")
                 //.apiInfo(apiInfo())
                 .select()
-               // .paths(regex("/api.*"))
+                .paths(regex("/api.*"))
                 .build();
     }
 

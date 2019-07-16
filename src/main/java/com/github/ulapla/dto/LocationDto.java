@@ -16,11 +16,11 @@ public class LocationDto {
 
     public LocationDto(Location that) {
         this.id = that.getId();
-        this.place = that.getPlace();
-        this.position = that.getPosition();
-        this.items = that.getItemLocations().stream()
-                .map(itemLocation -> itemLocation.getItem().getCategory().getName() + " " + itemLocation.getItem().getName())
-                .toArray(String[]::new);
+        this.place = that.getPlace()+" "+that.getPosition();
+//        this.position = that.getPosition();
+//        this.items = that.getItemLocations().stream()
+//                .map(itemLocation -> itemLocation.getItem().getCategory().getName() + " " + itemLocation.getItem().getName())
+//                .toArray(String[]::new);
 
     }
 

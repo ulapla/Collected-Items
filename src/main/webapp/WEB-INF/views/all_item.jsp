@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
@@ -14,6 +15,17 @@
         <th>Ilość</th>
         <th>Lokalizacja</th>
     </tr>
+
+    <c:forEach items="${items}" var="item">
+         <tr>
+            <td>${item.name}</td>
+            <td>${item.category.name}</td>
+            <td>${item.description}</td>
+            <td>${item.quantity}</td>
+            <td>${item.itemLocations}</td>
+        </tr>
+    </c:forEach>
+
 </table>
 <script language="javascript" type="text/javascript" charset="UTF-8"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

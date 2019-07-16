@@ -14,7 +14,9 @@ public class Location {
     @OneToMany(mappedBy = "location")
     private Set<ItemLocation> itemLocations;
 
-
+    public String getName(){
+        return this.place + " " +this.position;
+    }
 
     public Long getId() {
         return id;

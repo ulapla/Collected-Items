@@ -19,9 +19,11 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
-    public List<LocationDto> findAll(){
-        return locationRepository.findAll().stream()
-                .map(LocationDto::new)
-                .collect(Collectors.toList());
+    public List<Location> findAll(){
+        return locationRepository.findAll();
+    }
+
+    public LocationDto findOneById(Long id){
+        return new LocationDto(locationRepository.findById(id).get());
     }
 }

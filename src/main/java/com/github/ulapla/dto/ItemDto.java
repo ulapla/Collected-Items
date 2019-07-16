@@ -11,7 +11,7 @@ public class ItemDto {
     private String description;
     private int quantity;
     private String filePath;
-    private String[] location;
+    private LocationDto[] locationDto;
 
     public ItemDto() {
     }
@@ -23,9 +23,9 @@ public class ItemDto {
         this.description = that.getDescription();
         this.quantity = that.getQuantity();
         this.filePath = that.getFilePath();
-        this.location = that.getItemLocations().stream()
-                .map(itemLocation -> itemLocation.getLocation().getPlace() + " " + itemLocation.getLocation().getPosition())
-                .toArray(String[]::new);
+        this.locationDto = that.getItemLocations().stream()
+                .map(itemLocation -> new LocationDto(itemLocation.getLocation()))
+                .toArray(LocationDto[]::new);
     }
 
 
@@ -77,11 +77,12 @@ public class ItemDto {
         this.filePath = filePath;
     }
 
-    public String[] getLocations() {
-        return location;
+
+    public LocationDto[] getLocationDto() {
+        return locationDto;
     }
 
-    public void setLocations(String[] locations) {
-        this.location = locations;
+    public void setLocationDto(LocationDto[] locationDto) {
+        this.locationDto = locationDto;
     }
 }

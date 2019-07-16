@@ -16,26 +16,18 @@ public class ItemService {
     private ItemRepository itemRepository;
     private CategoryRepository categoryRepository;
 
+
     @Autowired
     public ItemService(ItemRepository itemRepository, CategoryRepository categoryRepository) {
         this.itemRepository = itemRepository;
         this.categoryRepository = categoryRepository;
     }
 
-    public List<ItemDto> findAll(){
-        return itemRepository.findAll().stream()
-                .map(ItemDto::new)
-                .collect(Collectors.toList());
+    public List<Item> findAll(){
+        return itemRepository.findAll();
     }
 
-    public void createItem(ItemDto itemDto){
-        Item item = new Item();
-        item.setName(itemDto.getName());
-        item.setCategory(categoryRepository.findByName(itemDto.getType()));
-        //item.setLocations();
-        item.setDescription(itemDto.getDescription());
-        item.setQuantity(itemDto.getQuantity());
-        item.setFilePath(itemDto.getFilePath());
+    public void saveItem(Item item){
         itemRepository.save(item);
     }
 }

@@ -1,6 +1,7 @@
 package com.github.ulapla.controllers;
 
 import com.github.ulapla.dto.LocationDto;
+import com.github.ulapla.model.Location;
 import com.github.ulapla.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ public class LocationController {
 
     @GetMapping("get/all")
     @ResponseBody
-    public List<LocationDto> getLocations(){
+    public List<Location> getLocations(){
         return locationService.findAll();
     }
 }
