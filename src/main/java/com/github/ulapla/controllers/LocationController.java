@@ -50,4 +50,10 @@ public class LocationController {
         locationService.saveLocation(location);
         return "redirect:/api/location/all";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteLocation(@PathVariable Long id){
+        locationService.deleteById(id);
+        return "redirect:/api/location/all";
+    }
 }
