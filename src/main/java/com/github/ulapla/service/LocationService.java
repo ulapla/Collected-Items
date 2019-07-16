@@ -23,7 +23,7 @@ public class LocationService {
         return locationRepository.findAll();
     }
 
-    public LocationDto findOneById(Long id){
-        return new LocationDto(locationRepository.findById(id).get());
+    public Location findOneById(Long id){
+        return locationRepository.findById(id).get();
     }
 }

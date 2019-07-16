@@ -22,7 +22,11 @@
             <td>${item.category.name}</td>
             <td>${item.description}</td>
             <td>${item.quantity}</td>
-            <td>${item.itemLocations}</td>
+            <td><c:forEach items="${item.itemLocations}" var="location">
+                ${location.location.name},
+            </c:forEach>
+            </td>
+             <td><a href="/api/item/edit/${item.id}">edit</a> </td>
         </tr>
     </c:forEach>
 

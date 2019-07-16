@@ -30,4 +30,8 @@ public class ItemService {
     public void saveItem(Item item){
         itemRepository.save(item);
     }
+
+    public Item findById(Long id){
+        return itemRepository.findById(id).get();
+    }
 }
