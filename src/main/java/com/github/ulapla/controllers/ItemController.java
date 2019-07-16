@@ -80,14 +80,40 @@ public class ItemController {
     }
 
     @GetMapping("edit/{id}")
-    public String editItem(@PathVariable Long id, Model model){
+    public String editItem(@PathVariable Long id, Model model) {
         model.addAttribute("item", itemService.findById(id));
-        return"edit_item";
+        return "edit_item";
     }
 
     @PostMapping("/edit/{id}")
-    public String saveItem(Item item){
+    public String saveItem(Item item) {
         itemService.saveItem(item);
         return "redirect:/api/item/all";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteItem(@PathVariable Long id) {
+        itemService.deleteItem(id);
+        return "redirect:/api/item/all";
+    }
+
+
+    @PostMapping("/search")
+
+    public String search(@RequestParam String name,
+                         @RequestParam(required = false) Long categoryId,
+                         @RequestParam String description,
+                         Model model) {
+        System.out.println(categoryId);
+        if (categoryId != null) {
+            model.addAttribute("items", itemService.findByCategory(categoryService.findById(categoryId)));
+        }
+        else if (!name.equals("")) {
+            model.addAttribute("items", itemService.findByName(name));
+        }
+        else if(!description.equals("")){
+            model.addAttribute("items",itemService.findByDescription(description));
+        }
+        return "all_item";
     }
 }

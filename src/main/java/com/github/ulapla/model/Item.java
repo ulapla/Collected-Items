@@ -1,5 +1,7 @@
 package com.github.ulapla.model;
 
+import org.hibernate.annotations.OnDelete;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,10 +16,10 @@ public class Item {
     @JoinColumn(name = "category_id")
     private Category category;
     private String description;
-    private int quantity;
     private String filePath;
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
     private Set<ItemLocation> itemLocations;
+    private int quantity;
 
 
     public Long getId() {
@@ -48,8 +50,11 @@ public class Item {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantity() {
+        quantity = itemLocations.stream()
+                .map(ItemLocation::getQuantity)
+                .reduce(Integer::sum)
+                .get();
     }
 
     public String getFilePath() {

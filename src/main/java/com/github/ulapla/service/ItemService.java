@@ -1,6 +1,7 @@
 package com.github.ulapla.service;
 
 import com.github.ulapla.dto.ItemDto;
+import com.github.ulapla.model.Category;
 import com.github.ulapla.model.Item;
 import com.github.ulapla.repository.CategoryRepository;
 import com.github.ulapla.repository.ItemRepository;
@@ -27,11 +28,27 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
+    public List<Item> findByCategory(Category category){
+        return itemRepository.findByCategory(category);
+    }
+
     public void saveItem(Item item){
         itemRepository.save(item);
     }
 
     public Item findById(Long id){
         return itemRepository.findById(id).get();
+    }
+
+    public void deleteItem(Long id){
+        itemRepository.delete(itemRepository.findById(id).get());
+    }
+
+    public List<Item> findByName(String name){
+        return itemRepository.findByName(name);
+    }
+
+    public List<Item>findByDescription(String s){
+        return itemRepository.findByDescriptionContaining(s);
     }
 }

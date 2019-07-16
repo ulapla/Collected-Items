@@ -21,7 +21,7 @@ public class ItemDto {
         this.name = that.getName();
         this.type = that.getCategory().getName();
         this.description = that.getDescription();
-        this.quantity = that.getQuantity();
+        //this.quantity = that.getQuantity();
         this.filePath = that.getFilePath();
         this.locationDto = that.getItemLocations().stream()
                 .map(itemLocation -> new LocationDto(itemLocation.getLocation()))
