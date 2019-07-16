@@ -81,6 +81,13 @@ public class ItemController {
 
     @GetMapping("edit/{id}")
     public String editItem(@PathVariable Long id, Model model){
+        model.addAttribute("item", itemService.findById(id));
         return"edit_item";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String saveItem(Item item){
+        itemService.saveItem(item);
+        return "redirect:/api/item/all";
     }
 }
