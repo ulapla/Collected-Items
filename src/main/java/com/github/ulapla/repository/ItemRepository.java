@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    public List<Item> findByName(String name);
+    public List<Item> findByNameContaining(String name);
     public List<Item> findByCategory(Category category);
     public List<Item> findByDescriptionContaining(String string);
 

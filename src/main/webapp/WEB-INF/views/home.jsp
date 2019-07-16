@@ -6,7 +6,9 @@
 <body>
 <a href="/api/item/all">Wszystkie elementy</a>
 <a href="/api/item/add">Dodaj nowy element</a>
-<a href="">Wszystkie lokalizacje</a>
+<a href="/api/location/all">Wszystkie lokalizacje</a>
 <a href="/api/location/add">Dodaj nową lokalizację</a>
+<a href="/api/category/all">Wszystkie kategorie</a>
+<a href="/api/category/add">Dodaj nową kategorię</a>
 </body>
 </html>

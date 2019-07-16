@@ -45,7 +45,7 @@ public class ItemService {
     }
 
     public List<Item> findByName(String name){
-        return itemRepository.findByName(name);
+        return itemRepository.findByNameContaining(name);
     }
 
     public List<Item>findByDescription(String s){

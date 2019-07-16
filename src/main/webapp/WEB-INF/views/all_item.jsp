@@ -9,6 +9,7 @@
 <body>
 <h2>Wszystkie elementy</h2>
 
+<a href="/api/item/add">Dodaj nowy element</a>
 <table border="1">
     <tr>
         <th>Nazwa/wartość</th>
