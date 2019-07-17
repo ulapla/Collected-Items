@@ -33,11 +33,15 @@ public class ItemService {
     }
 
     public void saveItem(Item item){
+        Item item1 = itemRepository.findById(item.getId()).get();
+        item.setItemLocations(item1.getItemLocations());
+        item.setQuantity();
         itemRepository.save(item);
     }
 
     public Item findById(Long id){
-        return itemRepository.findById(id).get();
+        Item temp =itemRepository.findById(id).get();
+        return temp;
     }
 
     public void deleteItem(Long id){

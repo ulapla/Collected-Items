@@ -8,10 +8,10 @@
 <form:form method="post" action="/api/item/edit/${item.id}" modelAttribute="item">
     <div><form:errors path="*" class="has-error" /></div>
     <p>Nazwa: <form:input id="name" path="name" value="${item.name}"/></p>
-
     <p>Opis: <form:input id="description" path="description" value="${item.description}"/></p>
-<%--    <p>Ilość: <form:input id="quantity" path="quantity" value="${item.quantity}"/></p>--%>
     <p><form:select path="category" items="${categories}"  itemValue="id" itemLabel="name" value="category" multiple="false"/></p>
+
+<%--    <p><form:input type="hidden" path="itemLocations" value="${item.itemLocations}"/></p>--%>
 
 <%--    <p><form:select path="locations" items="${locations}"  itemValue="id" itemLabel="name" multiple="true"/></p>--%>
 

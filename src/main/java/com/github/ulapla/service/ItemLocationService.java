@@ -22,13 +22,9 @@ public class ItemLocationService {
 
     public void saveItemLocation(ItemLocation itemLocation){
         itemLocationRepository.save(itemLocation);
-        System.out.println(itemLocation.getItem());
         Item item = itemLocation.getItem();
-        System.out.println(item.getName());
         item.setQuantity();
         itemRepository.save(item);
-
-
     }
 
     public ItemLocation findById(Long id){
