@@ -8,17 +8,13 @@
     <title>Dodaj element</title>
 </head>
 <body>
-<%--<c:forEach items="${locations}" var="location">--%>
-<%--    <p>${location.place}</p>--%>
-<%--</c:forEach>--%>
-
 
 <form:form method="post" action="/api/item/add" modelAttribute="item">
     <div><form:errors path="*" class="has-error" /></div>
     <p>Nazwa: <form:input id="name" path="name"/></p>
 
     <p>Opis: <form:input id="description" path="description"/></p>
-    <p>Ilość: <form:input id="quantity" path="quantity" /></p>
+
     <p><form:select path="category" items="${categories}"  itemValue="id" itemLabel="name" multiple="false"/>
 
     </p>

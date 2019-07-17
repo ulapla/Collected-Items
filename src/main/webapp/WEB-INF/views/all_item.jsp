@@ -41,12 +41,12 @@
 
     <c:forEach items="${items}" var="item">
          <tr>
-            <td>${item.name}</td>
+             <td><a href="/api/item/show/locations/${item.id}">${item.name}</a></td>
             <td>${item.category.name}</td>
             <td>${item.description}</td>
             <td>${item.quantity}</td>
             <td><c:forEach items="${item.itemLocations}" var="location">
-                ${location.location.name},
+                ${location.location.name}<br>
             </c:forEach>
             </td>
              <td><a href="/api/item/edit/${item.id}">Edytuj</a> </td>

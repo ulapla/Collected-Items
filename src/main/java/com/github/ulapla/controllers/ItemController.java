@@ -4,6 +4,7 @@ import com.github.ulapla.model.Category;
 import com.github.ulapla.model.Item;
 import com.github.ulapla.model.ItemLocation;
 import com.github.ulapla.model.Location;
+import com.github.ulapla.repository.ItemLocationRepository;
 import com.github.ulapla.service.CategoryService;
 import com.github.ulapla.service.ItemLocationService;
 import com.github.ulapla.service.ItemService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -74,8 +76,12 @@ public class ItemController {
     }
 
     @PostMapping("{id}/add/location")
-    public String saveLocation(ItemLocation itemLocation, Long id) {
-        itemLocationService.saveItemLocation(itemLocation);
+    public String saveLocation(ItemLocation itemLocation, @PathVariable Long id) {
+        ItemLocation newItemLocation = new ItemLocation();
+        newItemLocation.setQuantity(itemLocation.getQuantity());
+        newItemLocation.setLocation(itemLocation.getLocation());
+        newItemLocation.setItem(itemService.findById(id));
+        itemLocationService.saveItemLocation(newItemLocation);
         return "redirect:/api/item/add";
     }
 
@@ -115,5 +121,32 @@ public class ItemController {
             model.addAttribute("items",itemService.findByDescription(description));
         }
         return "all_item";
+    }
+
+    @GetMapping("/show/locations/{id}")
+    public String showItemLocations(Model model,@PathVariable Long id){
+        model.addAttribute("itemLocations", itemService.findById(id).getItemLocations());
+        return "item_location";
+    }
+
+    @GetMapping("/location/edit/{id}")
+    public String editQuantity(Model model, @PathVariable Long id){
+        model.addAttribute("itemLocation", itemLocationService.findById(id));
+        return "edit_quantity";
+    }
+
+    @PostMapping("/location/edit/{id}")
+    public String saveQuantity(ItemLocation itemLocation){
+        itemLocationService.saveItemLocation(itemLocation);
+        return "redirect:/api/item/show/locations/" + itemLocation.getItem().getId();
+    }
+
+    @GetMapping("/location/delete/{id}")
+    public String deleteItemLocation(@PathVariable Long id){
+
+        ItemLocation byId = itemLocationService.findById(id);
+        Long id1 = byId.getItem().getId();
+        itemLocationService.deleteItemLocation(byId);
+        return "redirect:/api/item/show/locations/"+id1;
     }
 }

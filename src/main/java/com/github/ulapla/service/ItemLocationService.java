@@ -4,6 +4,7 @@ import com.github.ulapla.model.Item;
 import com.github.ulapla.model.ItemLocation;
 import com.github.ulapla.model.Location;
 import com.github.ulapla.repository.ItemLocationRepository;
+import com.github.ulapla.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,21 +12,33 @@ import org.springframework.stereotype.Service;
 public class ItemLocationService {
 
     private ItemLocationRepository itemLocationRepository;
+    private final ItemRepository itemRepository;
 
-    @Autowired
-    public ItemLocationService(ItemLocationRepository itemLocationRepository) {
+    public ItemLocationService(ItemLocationRepository itemLocationRepository, ItemRepository itemRepository) {
         this.itemLocationRepository = itemLocationRepository;
+        this.itemRepository = itemRepository;
     }
 
-    public ItemLocation saveItemLocation(Item item, Location location, int quantity){
-        ItemLocation itemLocation = new ItemLocation();
-        itemLocation.setItem(item);
-        itemLocation.setLocation(location);
-        itemLocation.setQuantity(quantity);
-        return itemLocationRepository.save(itemLocation);
-    }
 
     public void saveItemLocation(ItemLocation itemLocation){
         itemLocationRepository.save(itemLocation);
+        System.out.println(itemLocation.getItem());
+        Item item = itemLocation.getItem();
+        System.out.println(item.getName());
+        item.setQuantity();
+        itemRepository.save(item);
+
+
+    }
+
+    public ItemLocation findById(Long id){
+        return itemLocationRepository.findById(id).get();
+    }
+
+    public void deleteItemLocation(ItemLocation itemLocation){
+        Item item = itemLocation.getItem();
+        itemLocationRepository.delete(itemLocation);
+        item.setQuantity();
+        itemRepository.save(item);
     }
 }

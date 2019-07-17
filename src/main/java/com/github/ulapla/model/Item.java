@@ -3,6 +3,7 @@ package com.github.ulapla.model;
 import org.hibernate.annotations.OnDelete;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,7 @@ public class Item {
     private String description;
     private String filePath;
     @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
-    private Set<ItemLocation> itemLocations;
+    private Set<ItemLocation> itemLocations = new HashSet<>();
     private int quantity;
 
 
@@ -50,11 +51,15 @@ public class Item {
         return quantity;
     }
 
-    public void setQuantity() {
-        quantity = itemLocations.stream()
-                .map(ItemLocation::getQuantity)
-                .reduce(Integer::sum)
-                .get();
+    public void setQuantity() { // TODO: 17.07.19  move to service
+        if (itemLocations.size() > 0) {
+            quantity = itemLocations.stream()
+                    .map(ItemLocation::getQuantity)
+                    .reduce(Integer::sum)
+                    .get();
+        } else {
+            quantity = 0;
+        }
     }
 
     public String getFilePath() {

@@ -59,4 +59,5 @@ public class CategoryController {
         categoryService.saveCategory(category);
         return "redirect:/api/category/all";
     }
+
 }

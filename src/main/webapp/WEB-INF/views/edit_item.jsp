@@ -10,7 +10,7 @@
     <p>Nazwa: <form:input id="name" path="name" value="${item.name}"/></p>
 
     <p>Opis: <form:input id="description" path="description" value="${item.description}"/></p>
-    <p>Ilość: <form:input id="quantity" path="quantity" value="${item.quantity}"/></p>
+<%--    <p>Ilość: <form:input id="quantity" path="quantity" value="${item.quantity}"/></p>--%>
     <p><form:select path="category" items="${categories}"  itemValue="id" itemLabel="name" value="category" multiple="false"/></p>
 
 <%--    <p><form:select path="locations" items="${locations}"  itemValue="id" itemLabel="name" multiple="true"/></p>--%>
