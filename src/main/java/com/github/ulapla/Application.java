@@ -1,7 +1,11 @@
 package com.github.ulapla;
 
+import com.github.ulapla.storage.StorageProperties;
+import com.github.ulapla.storage.StorageService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,7 +17,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
+
 @SpringBootApplication
+@EnableConfigurationProperties(StorageProperties.class)
 public class Application{
 
     public static void main(String[] args) {
@@ -21,7 +27,13 @@ public class Application{
     }
 
 
-
+    @Bean
+    CommandLineRunner init(StorageService storageService) {
+        return (args) -> {
+            storageService.deleteAll();
+            storageService.init();
+        };
+    }
 
     @Bean
     public Docket newsApi() {
