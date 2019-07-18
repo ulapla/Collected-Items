@@ -29,7 +29,7 @@
         <td>${itemLocation.quantity}</td>
 
         <td><a href="/api/item/location/edit/${itemLocation.id}">Zmień ilość</a> </td>
-        <td><a href="/api/item/location/delete/${itemLocation.id}">Usuń</a> </td>
+        <td><a class="confirm" href="/api/item/location/delete/${itemLocation.id}">Usuń</a> </td>
     </tr>
     </c:forEach>
 </table>

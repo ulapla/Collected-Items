@@ -11,7 +11,7 @@ public class Location {
     @Column(nullable = false)
     private String place;
     private String position;
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location",cascade = CascadeType.REMOVE)
     private Set<ItemLocation> itemLocations;
 
     public String getName(){
