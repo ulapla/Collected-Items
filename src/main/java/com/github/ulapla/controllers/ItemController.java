@@ -71,12 +71,15 @@ public class ItemController {
         return "item/add_location";
     }
 
-    @PostMapping("{id}/add/location")
-    public String saveLocation(ItemLocation itemLocation, @PathVariable Long id) {
+    @PostMapping("/add/location")
+    public String saveLocation(@Valid ItemLocation itemLocation,BindingResult result) {
+        if (result.hasErrors()) {
+            return "item/add_location";
+        }
         ItemLocation newItemLocation = new ItemLocation();
         newItemLocation.setQuantity(itemLocation.getQuantity());
         newItemLocation.setLocation(itemLocation.getLocation());
-        newItemLocation.setItem(itemService.findById(id));
+        newItemLocation.setItem(itemService.findById(itemLocation.getItem().getId()));
         itemLocationService.saveItemLocation(newItemLocation);
         return "redirect:/api/item/add";
     }
@@ -88,7 +91,10 @@ public class ItemController {
     }
 
     @PostMapping("/edit/{id}")
-    public String saveItem(Item item) {
+    public String saveItem(@Valid Item item,BindingResult result) {
+        if (result.hasErrors()) {
+            return "item/edit_item";
+        }
         itemService.saveItem(item);
         return "redirect:/api/item/all";
     }
@@ -106,7 +112,7 @@ public class ItemController {
                          @RequestParam(required = false) Long categoryId,
                          @RequestParam String description,
                          Model model) {
-        System.out.println(categoryId);
+
         if (categoryId != null) {
             model.addAttribute("items", itemService.findByCategory(categoryService.findById(categoryId)));
         }
@@ -132,7 +138,10 @@ public class ItemController {
     }
 
     @PostMapping("/location/edit/{id}")
-    public String saveQuantity(ItemLocation itemLocation){
+    public String saveQuantity(@Valid ItemLocation itemLocation, BindingResult result){
+        if (result.hasErrors()) {
+            return "item/edit_quantity";
+        }
         itemLocationService.saveItemLocation(itemLocation);
         return "redirect:/api/item/show/locations/" + itemLocation.getItem().getId();
     }

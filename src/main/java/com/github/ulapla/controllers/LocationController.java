@@ -6,8 +6,10 @@ import com.github.ulapla.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -34,7 +36,10 @@ public class LocationController {
     }
 
     @PostMapping("/add")
-    public String saveLocation(Location location){
+    public String saveLocation(@Valid Location location, BindingResult result){
+        if (result.hasErrors()) {
+            return "/location/add_location";
+        }
         locationService.saveLocation(location);
         return "redirect:/api/location/add";
     }
@@ -46,7 +51,10 @@ public class LocationController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateLocation(Location location){
+    public String updateLocation(@Valid Location location, BindingResult result){
+        if (result.hasErrors()) {
+            return "/location/edit_location";
+        }
         locationService.saveLocation(location);
         return "redirect:/api/location/all";
     }

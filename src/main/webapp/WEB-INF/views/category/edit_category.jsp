@@ -17,6 +17,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
                     <form:form method="post" action="/api/category/edit/${category.id}" modelAttribute="category">
+                        <div><form:errors path="*" class="has-error" /></div>
                     <p>Nazwa: <form:input class="form-control" path="name" value="${name}"/></p>
                     <p>
                         <button type="submit" value="Save">Zapisz</button>

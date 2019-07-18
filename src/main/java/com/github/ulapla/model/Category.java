@@ -1,6 +1,8 @@
 package com.github.ulapla.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -9,6 +11,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    @NotNull
+    @Size(min=1)
     private String name;
     @OneToMany(mappedBy = "category")
     private Set<Item> items;

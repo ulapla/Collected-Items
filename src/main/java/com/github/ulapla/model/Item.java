@@ -3,6 +3,9 @@ package com.github.ulapla.model;
 import org.hibernate.annotations.OnDelete;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +15,8 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    @NotNull
+    @Size(min=1)
     private String name;
     @ManyToOne
     @JoinColumn(name = "category_id")
@@ -20,6 +25,7 @@ public class Item {
     private String filePath;
     @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
     private Set<ItemLocation> itemLocations = new HashSet<>();
+    @Min(0)
     private int quantity;
 
 

@@ -18,8 +18,7 @@
 <table width="100%" class="table table-striped table-bordered table-hover"
        id="dataTables-example">
     <tr>
-        <th>Miejsce</th>
-        <th>Pozycja</th>
+        <th>Nazwa</th>
     </tr>
     <c:forEach items="${categories}" var="category">
     <tr>

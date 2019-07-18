@@ -112,6 +112,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <h1 class="page-header">Wszystkie elementy</h1>
+
                 </div>
                 <!-- /.col-xl-12 -->
             </div>
