@@ -1,18 +1,27 @@
 package com.github.ulapla.model;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class ItemLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Min(1)
     private int quantity;
     @ManyToOne
     @JoinColumn(name = "item_id")
+    @NotNull
     private Item item;
     @ManyToOne
     @JoinColumn(name = "location_id")
+    @NotNull
     private Location location;
 
     public Long getId() {

@@ -26,7 +26,7 @@
     <td>${location.place}</td>
     <td>${location.position}</td>
     <td><a href="/api/location/edit/${location.id}">Edytuj</a> </td>
-    <td><a href="/api/location/delete/${location.id}">Usuń</a> </td>
+    <td><a class="confirm" href="/api/location/delete/${location.id}">Usuń</a> </td>
     </tr>
 </c:forEach>
 </table>

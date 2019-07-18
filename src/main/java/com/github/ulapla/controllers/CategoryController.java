@@ -5,6 +5,7 @@ import com.github.ulapla.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("api/category")
@@ -37,7 +39,10 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String saveCategory(Category category){
+    public String saveCategory(@Valid Category category, BindingResult result){
+        if (result.hasErrors()) {
+            return"category/add_category";
+        }
         categoryService.saveCategory(category);
         return "redirect:/api/category/all";
     }
@@ -55,7 +60,10 @@ public class CategoryController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateCategory(Category category){
+    public String updateCategory(@Valid Category category, BindingResult result){
+        if (result.hasErrors()) {
+            return"category/edit_category";
+        }
         categoryService.saveCategory(category);
         return "redirect:/api/category/all";
     }

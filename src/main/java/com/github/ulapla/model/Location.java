@@ -1,6 +1,8 @@
 package com.github.ulapla.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -9,9 +11,11 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
+    @NotNull
+    @Size(min=1)
     private String place;
     private String position;
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location",cascade = CascadeType.REMOVE)
     private Set<ItemLocation> itemLocations;
 
     public String getName(){

@@ -16,15 +16,18 @@
 
                 <!-- /.card-header -->
                 <div class="card-body">
-<form:form method="post" action="/api/item/${item.id}/add/location" modelAttribute="itemLocation">
-    <div><form:errors path="*" class="has-error" /></div>
-    <p>Nazwa: ${item.name}</p>
+                    <form:form method="post" action="/api/item/add/location" modelAttribute="itemLocation">
+                    <div><form:errors path="*" class="has-error"/></div>
+                    <p>Nazwa: ${item.name}</p>
 
-    <input type="hidden" name="item.id" value="${item.id}"/>
-    <p><form:select class="form-control" path="location" items="${locations}"  itemValue="id" itemLabel="name" multiple="false"/>
-    <p>Ilość: <form:input class="form-control" id="quantity" path="quantity"/></p>
-    </p>
+                    <form:input type="hidden" path="item" name="item.id" value="${item.id}"/>
+                    <p><form:select class="form-control" path="location" items="${locations}" itemValue="id"
+                                    itemLabel="name" multiple="false"/>
+                    <p>Ilość: <form:input class="form-control" id="quantity" path="quantity"/></p>
+                    </p>
 
-    <p><button type="submit" value="Save">Zapisz</button></p>
-</form:form>
+                    <p>
+                        <button type="submit" value="Save">Zapisz</button>
+                    </p>
+                    </form:form>
 <jsp:include page="../footer.jsp"/>

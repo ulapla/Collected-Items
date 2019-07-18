@@ -16,6 +16,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
 <form:form method="post" action="/api/item/location/edit/${itemLocation.id}" modelAttribute="itemLocation">
+    <div><form:errors path="*" class="has-error" /></div>
     <table width="100%" class="table table-striped table-bordered table-hover"
            id="dataTables-example">
         <tr>
