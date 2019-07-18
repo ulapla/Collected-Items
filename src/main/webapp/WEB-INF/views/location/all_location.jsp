@@ -1,13 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
-<head>
-    <title>Wszystkie lokalizacje</title>
-</head>
-<body>
-<h2>Wszystkie lokalizacje</h2>
-<a href="/api/location/add">Dodaj nową lokalizację</a>
-<table border="1">
+<jsp:include page="../header.jsp"/>
+<div id="page-wrapper" class="p-4">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">Wszystkie lokalizacje</h1>
+        </div>
+        <!-- /.col-xl-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+<table width="100%" class="table table-striped table-bordered table-hover"
+       id="dataTables-example">
     <tr>
         <th>Miejsce</th>
         <th>Pozycja</th>
@@ -21,5 +30,4 @@
     </tr>
 </c:forEach>
 </table>
-</body>
-</html>
+<jsp:include page="../footer.jsp"/>

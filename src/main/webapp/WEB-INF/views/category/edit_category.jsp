@@ -1,13 +1,25 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
-<head>
-    <title>Edycja kategorii</title>
-</head>
-<body>
-<form:form method="post" action="/api/category/edit/${category.id}" modelAttribute="category">
-    <p>Miejsce: <form:input path="name" value="${name}"/></p>
-    <p><button type="submit" value="Save">Zapisz</button></p>
-</form:form>
-</body>
-</html>
+<jsp:include page="../header.jsp"/>
+
+<div id="page-wrapper" class="p-4">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">Edycja kategorii</h1>
+        </div>
+        <!-- /.col-xl-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form:form method="post" action="/api/category/edit/${category.id}" modelAttribute="category">
+                    <p>Nazwa: <form:input class="form-control" path="name" value="${name}"/></p>
+                    <p>
+                        <button type="submit" value="Save">Zapisz</button>
+                    </p>
+                    </form:form>
+<jsp:include page="../footer.jsp"/>

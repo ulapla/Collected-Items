@@ -4,7 +4,6 @@ import com.github.ulapla.model.Category;
 import com.github.ulapla.model.Item;
 import com.github.ulapla.model.ItemLocation;
 import com.github.ulapla.model.Location;
-import com.github.ulapla.repository.ItemLocationRepository;
 import com.github.ulapla.service.CategoryService;
 import com.github.ulapla.service.ItemLocationService;
 import com.github.ulapla.service.ItemService;
@@ -16,10 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/api/item")
@@ -50,19 +46,19 @@ public class ItemController {
     @GetMapping("/all")
     public String printItems(Model model) {
         model.addAttribute("items", itemService.findAll());
-        return "all_item";
+        return "item/all_item";
     }
 
     @GetMapping("/add")
     public String addItem(Model model) {
         model.addAttribute("item", new Item());
-        return "add_item";
+        return "item/add_item";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String processForm(Model model, @Valid Item item, BindingResult result) {
         if (result.hasErrors()) {
-            return "add_item";
+            return "item/add_item";
         }
         itemService.saveItem(item);
         return "redirect:/api/item/" + item.getId() + "/add/location";
@@ -72,7 +68,7 @@ public class ItemController {
     public String addLocationToItem(Model model, @PathVariable Long id) {
         model.addAttribute("item", itemService.findById(id));
         model.addAttribute("itemLocation", new ItemLocation());
-        return "add_location";
+        return "item/add_location";
     }
 
     @PostMapping("{id}/add/location")
@@ -88,7 +84,7 @@ public class ItemController {
     @GetMapping("edit/{id}")
     public String editItem(@PathVariable Long id, Model model) {
         model.addAttribute("item", itemService.findById(id));
-        return "edit_item";
+        return "item/edit_item";
     }
 
     @PostMapping("/edit/{id}")
@@ -120,19 +116,19 @@ public class ItemController {
         else if(!description.equals("")){
             model.addAttribute("items",itemService.findByDescription(description));
         }
-        return "all_item";
+        return "item/all_item";
     }
 
     @GetMapping("/show/locations/{id}")
     public String showItemLocations(Model model,@PathVariable Long id){
         model.addAttribute("itemLocations", itemService.findById(id).getItemLocations());
-        return "item_location";
+        return "item/item_location";
     }
 
     @GetMapping("/location/edit/{id}")
     public String editQuantity(Model model, @PathVariable Long id){
         model.addAttribute("itemLocation", itemLocationService.findById(id));
-        return "edit_quantity";
+        return "item/edit_quantity";
     }
 
     @PostMapping("/location/edit/{id}")
@@ -144,9 +140,9 @@ public class ItemController {
     @GetMapping("/location/delete/{id}")
     public String deleteItemLocation(@PathVariable Long id){
 
-        ItemLocation byId = itemLocationService.findById(id);
-        Long id1 = byId.getItem().getId();
-        itemLocationService.deleteItemLocation(byId);
-        return "redirect:/api/item/show/locations/"+id1;
+        itemLocationService.findById(id).getItem().getId();
+        ItemLocation itemLocation = itemLocationService.findById(id);
+        itemLocationService.deleteItemLocation(itemLocationService.findById(id));
+        return "redirect:/api/item/show/locations/"+itemLocationService.findById(id).getItem().getId();
     }
 }

@@ -1,19 +1,26 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<a href="/api/item/all">Wszystkie elementy</a>
-<a href="/api/item/add">Dodaj nowy element</a>
-<a href="/api/location/all">Wszystkie lokalizacje</a>
-<a href="/api/location/add">Dodaj nową lokalizację</a>
-<a href="/api/category/all">Wszystkie kategorie</a>
-<a href="/api/category/add">Dodaj nową kategorię</a>
+<jsp:include page="header.jsp"/>
+<div id="page-wrapper" class="p-4">
+    <div class="row">
+        <div class="col-xl-12">
+            <h1 class="page-header">Strona główna</h1>
+        </div>
+        <!-- /.col-xl-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+
+                <!-- /.card-header -->
+                <div class="card-body">
+
+
 <p>Ilość wszystkich elementów: ${quantityAll}</p>
     <form action="/api/item/search/" method="post">
-        Wyszukaj <br>Nazwa: <input type="text" name="name"/>
-    <input type="hidden" name="description"/>
+        Nazwa: <input type="text" name="name"/>
+        <input type="hidden" name="description"/>
+        <button type="submit">Szukaj</button>
     </form>
-</body>
-</html>
+
+<jsp:include page="footer.jsp"/>
