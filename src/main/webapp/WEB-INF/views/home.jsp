@@ -16,9 +16,9 @@
                 <div class="card-body">
 
 
-<p>Ilość wszystkich elementów: ${quantityAll}</p>
+<h2 class="page-header">Ilość wszystkich elementów: ${quantityAll}</h2>
     <form action="/api/item/search/" method="post">
-        Nazwa: <input type="text" name="name"/>
+        Nazwa: <input type="text" class="form-control" name="name"/>
         <input type="hidden" name="description"/>
         <button type="submit">Szukaj</button>
     </form>
