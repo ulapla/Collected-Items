@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <jsp:include page="../header.jsp"/>
 <div id="page-wrapper" class="p-4">
@@ -59,12 +60,19 @@
                             <th>Miejsce</th>
                             <th>Pozycja</th>
                             <th>Ilość</th>
+                            <th>Zużyto</th>
                         </tr>
                         <c:forEach items="${itemLocations}" var="itemLocation">
                             <tr>
                                 <td>${itemLocation.location.place}</td>
                                 <td>${itemLocation.location.position}</td>
                                 <td>${itemLocation.quantity}</td>
+                                <td>
+                                    <form action="/api/item/quick/sub" method="post" >
+                                        <input type="number" name="usedQuantity"/>
+                                        <input type="hidden" name="itemLocationId" value="${itemLocation.id}">
+                                    </form>
+                                </td>
 
                                 <td><a href="/api/item/location/edit/${itemLocation.id}">Zmień ilość</a></td>
                                 <td><a class="confirm" href="/api/item/location/delete/${itemLocation.id}">Usuń</a></td>

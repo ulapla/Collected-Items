@@ -154,4 +154,13 @@ public class ItemController {
         itemLocationService.deleteItemLocation(itemLocation);
         return "redirect:/api/item/show/"+itemLocation.getItem().getId();
     }
+
+    @PostMapping("/quick/sub")
+    public String subtractQuantity(@RequestParam Long itemLocationId, @RequestParam int usedQuantity){
+        ItemLocation itemLocation = itemLocationService.findById(itemLocationId);
+        int newQuantity = itemLocation.getQuantity() - usedQuantity;
+        itemLocation.setQuantity(newQuantity);
+        itemLocationService.saveItemLocation(itemLocation);
+        return "redirect:/api/item/show/"+itemLocation.getItem().getId();
+    }
 }
