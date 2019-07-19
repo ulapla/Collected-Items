@@ -1,5 +1,6 @@
 package com.github.ulapla.storage;
 
+import com.github.ulapla.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -12,25 +13,36 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
 @Service
 public class FileSystemStorageService implements StorageService {
 
+    private ItemRepository itemRepository;
     private final Path rootLocation;
 
     @Autowired
-    public FileSystemStorageService(StorageProperties properties) {
+    public FileSystemStorageService(ItemRepository itemRepository, StorageProperties properties) {
+        this.itemRepository = itemRepository;
         this.rootLocation = Paths.get(properties.getLocation());
+
     }
 
     @Override
-    public void store(MultipartFile file) {
+    public String store(MultipartFile file) {
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + file.getOriginalFilename());
             }
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(file.getOriginalFilename()));
+            LocalDateTime time = LocalDateTime.now();
+            String timeFormated = time.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+            System.out.println(timeFormated);
+            String fileName = timeFormated + file.getOriginalFilename();
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
+            return fileName;
+
         } catch (IOException e) {
             throw new StorageException("Failed to store file " + file.getOriginalFilename(), e);
         }
@@ -77,10 +89,10 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void init() {
-        try {
-            Files.createDirectory(rootLocation);
-        } catch (IOException e) {
-            throw new StorageException("Could not initialize storage", e);
-        }
+//        try {
+//            Files.createDirectory(rootLocation);
+//        } catch (IOException e) {
+//            throw new StorageException("Could not initialize storage", e);
+//        }
     }
 }

@@ -15,6 +15,10 @@ public class HomeController {
         this.itemService = itemService;
     }
 
+    @GetMapping("/")
+    public String redirectToHome(){
+        return "redirect:/home";
+    }
     @GetMapping("/home")
     public String mainPage(Model model){
         model.addAttribute("quantityAll", itemService.findAll().stream().map(Item::getQuantity).reduce(Integer::sum).get());

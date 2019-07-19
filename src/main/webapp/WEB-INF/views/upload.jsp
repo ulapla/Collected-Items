@@ -1,9 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%--<html xmlns:th="https://www.thymeleaf.org">--%>
-<html>
-    <body>
-
+<jsp:include page="header.jsp"/>
         <div >
             <c:if test="${message}">
                 <h2>${message}</h2>
@@ -11,24 +10,23 @@
         </div>
 
         <div>
-            <form method="POST" enctype="multipart/form-data" action="/">
+            <form:form method="POST" enctype="multipart/form-data" action="/file/add" modelAttribute="item">
+                <form:hidden path="id"/>
+
                 <table>
                     <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
                     <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
                 </table>
-            </form>
+            </form:form>
         </div>
 
-        <div>
-            <ul>
-            <c:forEach items="${files}" var="file">
-                <li><a href="${file}"></a>${file} </li>
-            </c:forEach>
-        <%--        <li th:each="file : ${files}">--%>
-        <%--            <a th:href="${file}" th:text="${file}" />--%>
-        <%--        </li>--%>
-            </ul>
-        </div>
+<%--        <div>--%>
+<%--            <ul>--%>
+<%--            <c:forEach items="${files}" var="file">--%>
+<%--                <li><a href="${file}"></a>${file} </li>--%>
+<%--            </c:forEach>--%>
+<%--        --%>
+<%--            </ul>--%>
+<%--        </div>--%>
 
-    </body>
-</html>
+<jsp:include page="footer.jsp"/>

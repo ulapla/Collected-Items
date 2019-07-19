@@ -158,7 +158,7 @@
                                 </thead>
                                 <c:forEach items="${items}" var="item">
                                      <tr>
-                                         <td><a href="/api/item/show/locations/${item.id}">${item.name}</a></td>
+                                         <td><a href="/api/item/show/${item.id}">${item.name}</a></td>
                                         <td>${item.category.name}</td>
                                         <td>${item.description}</td>
                                         <td>${item.quantity}</td>
@@ -166,9 +166,7 @@
                                             ${location.location.name}<br>
                                         </c:forEach>
                                         </td>
-                                         <td><a href="/api/item/edit/${item.id}">Edytuj</a> </td>
-                                         <td><a class="confirm" href="/api/item/delete/${item.id}">Usuń</a> </td>
-                                         <td><a href="/api/item/${item.id}/add/location">Dodaj lokalizację</a> </td>
+
                                     </tr>
                                 </c:forEach>
 

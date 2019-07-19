@@ -13,7 +13,7 @@ public class ItemLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Min(1)
+    @Min(0)
     private int quantity;
     @ManyToOne
     @JoinColumn(name = "item_id")

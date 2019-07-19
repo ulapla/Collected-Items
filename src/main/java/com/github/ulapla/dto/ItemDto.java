@@ -1,7 +1,6 @@
 package com.github.ulapla.dto;
 
 import com.github.ulapla.model.Item;
-import com.github.ulapla.model.Location;
 
 public class ItemDto {
 
@@ -22,7 +21,7 @@ public class ItemDto {
         this.type = that.getCategory().getName();
         this.description = that.getDescription();
         //this.quantity = that.getQuantity();
-        this.filePath = that.getFilePath();
+        this.filePath = that.getFileName();
         this.locationDto = that.getItemLocations().stream()
                 .map(itemLocation -> new LocationDto(itemLocation.getLocation()))
                 .toArray(LocationDto[]::new);

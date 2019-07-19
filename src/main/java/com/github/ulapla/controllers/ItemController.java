@@ -96,7 +96,7 @@ public class ItemController {
             return "item/edit_item";
         }
         itemService.saveItem(item);
-        return "redirect:/api/item/all";
+        return "redirect:/api/item/show/" +item.getId();
     }
 
     @GetMapping("/delete/{id}")
@@ -125,8 +125,9 @@ public class ItemController {
         return "item/all_item";
     }
 
-    @GetMapping("/show/locations/{id}")
+    @GetMapping("/show/{id}")
     public String showItemLocations(Model model,@PathVariable Long id){
+        model.addAttribute("item", itemService.findById(id));
         model.addAttribute("itemLocations", itemService.findById(id).getItemLocations());
         return "item/item_location";
     }
@@ -143,15 +144,14 @@ public class ItemController {
             return "item/edit_quantity";
         }
         itemLocationService.saveItemLocation(itemLocation);
-        return "redirect:/api/item/show/locations/" + itemLocation.getItem().getId();
+        return "redirect:/api/item/show/" + itemLocation.getItem().getId();
     }
 
     @GetMapping("/location/delete/{id}")
     public String deleteItemLocation(@PathVariable Long id){
 
-        itemLocationService.findById(id).getItem().getId();
         ItemLocation itemLocation = itemLocationService.findById(id);
-        itemLocationService.deleteItemLocation(itemLocationService.findById(id));
-        return "redirect:/api/item/show/locations/"+itemLocationService.findById(id).getItem().getId();
+        itemLocationService.deleteItemLocation(itemLocation);
+        return "redirect:/api/item/show/"+itemLocation.getItem().getId();
     }
 }

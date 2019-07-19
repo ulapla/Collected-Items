@@ -1,7 +1,5 @@
 package com.github.ulapla.model;
 
-import org.hibernate.annotations.OnDelete;
-
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -22,7 +20,7 @@ public class Item {
     @JoinColumn(name = "category_id")
     private Category category;
     private String description;
-    private String filePath;
+    private String fileName;
     @OneToMany(mappedBy = "item", cascade = CascadeType.REMOVE)
     private Set<ItemLocation> itemLocations = new HashSet<>();
     @Min(0)
@@ -68,12 +66,12 @@ public class Item {
         }
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public Set<ItemLocation> getItemLocations() {
