@@ -4,10 +4,13 @@ import com.github.ulapla.model.Category;
 import com.github.ulapla.model.Item;
 import com.github.ulapla.model.ItemLocation;
 import com.github.ulapla.model.Location;
+import com.github.ulapla.repository.ItemRepository;
 import com.github.ulapla.service.CategoryService;
 import com.github.ulapla.service.ItemLocationService;
 import com.github.ulapla.service.ItemService;
 import com.github.ulapla.service.LocationService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -44,8 +47,9 @@ public class ItemController {
     }
 
     @GetMapping("/all")
-    public String printItems(Model model) {
-        model.addAttribute("items", itemService.findAll());
+    public String printItems(Model model, Pageable pageable) {
+        Page<Item> page = itemService.findAll(pageable);
+        model.addAttribute("page", page);
         return "item/all_item";
     }
 

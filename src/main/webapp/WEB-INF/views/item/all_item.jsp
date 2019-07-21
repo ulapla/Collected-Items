@@ -1,6 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib tagdir="/WEB-INF/tags/util" prefix="util"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<style type="text/css">
+
+    li
+    {
+        display:inline;
+    }
+</style>
 <jsp:include page="../header.jsp"/>
 
         <div id="page-wrapper" class="p-4">
@@ -51,7 +58,7 @@
 
                                     </tr>
                                 </thead>
-                                <c:forEach items="${items}" var="item">
+                                <c:forEach items="${page.content}" var="item">
                                      <tr>
                                          <td><a href="/api/item/show/${item.id}">${item.name}</a></td>
                                         <td>${item.category.name}</td>
@@ -67,6 +74,7 @@
 
                             </table>
                         </div>
+                        <util:pagination thispage="${page}"></util:pagination>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.panel -->
