@@ -8,7 +8,7 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "/home/ula/webtemp";
+    private String location = "/home/ula/webtemp"; //folder must be created before
 
     public String getLocation() {
         return location;

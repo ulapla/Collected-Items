@@ -20,13 +20,5 @@
             </form:form>
         </div>
 
-<%--        <div>--%>
-<%--            <ul>--%>
-<%--            <c:forEach items="${files}" var="file">--%>
-<%--                <li><a href="${file}"></a>${file} </li>--%>
-<%--            </c:forEach>--%>
-<%--        --%>
-<%--            </ul>--%>
-<%--        </div>--%>
 
 <jsp:include page="footer.jsp"/>

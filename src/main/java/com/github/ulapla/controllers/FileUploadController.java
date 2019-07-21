@@ -36,11 +36,6 @@ public class FileUploadController {
     public String listUploadedFiles(Model model,@PathVariable Long id) throws IOException {
 
         model.addAttribute("item",itemService.findById(id));
-        model.addAttribute("files", storageService.loadAll().map(
-                path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-                        "serveFile", path.getFileName().toString()).build().toString())
-                .collect(Collectors.toList()));
-
         return "upload";
     }
 

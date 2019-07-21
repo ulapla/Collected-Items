@@ -20,12 +20,10 @@ import java.util.stream.Stream;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    private ItemRepository itemRepository;
     private final Path rootLocation;
 
     @Autowired
-    public FileSystemStorageService(ItemRepository itemRepository, StorageProperties properties) {
-        this.itemRepository = itemRepository;
+    public FileSystemStorageService(StorageProperties properties) {
         this.rootLocation = Paths.get(properties.getLocation());
 
     }
@@ -38,7 +36,6 @@ public class FileSystemStorageService implements StorageService {
             }
             LocalDateTime time = LocalDateTime.now();
             String timeFormated = time.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-            System.out.println(timeFormated);
             String fileName = timeFormated + file.getOriginalFilename();
             Files.copy(file.getInputStream(), this.rootLocation.resolve(fileName));
             return fileName;
@@ -89,10 +86,10 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void init() {
-//        try {
-//            Files.createDirectory(rootLocation);
-//        } catch (IOException e) {
-//            throw new StorageException("Could not initialize storage", e);
-//        }
+        try {
+            Files.createDirectory(rootLocation);
+        } catch (IOException e) {
+            throw new StorageException("Could not initialize storage", e);
+        }
     }
 }
