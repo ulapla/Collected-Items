@@ -1,6 +1,5 @@
 package com.github.ulapla.controllers;
 
-import com.github.ulapla.dto.LocationDto;
 import com.github.ulapla.model.Location;
 import com.github.ulapla.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/api/location")

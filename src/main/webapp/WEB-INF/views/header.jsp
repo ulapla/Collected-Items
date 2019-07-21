@@ -17,10 +17,10 @@
     <link href="<c:url value="/resources/vendor/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="<c:url value="/resources/vendor/metisMenu/metisMenu.min.css"/>" rel="stylesheet">
+<%--    <link href="<c:url value="/resources/vendor/metisMenu/metisMenu.min.css"/>" rel="stylesheet">--%>
 
     <!-- DataTables CSS -->
-    <link href="<c:url value="/resources/vendor/datatables/css/dataTables.bootstrap4.css"/>" rel="stylesheet">
+<%--    <link href="<c:url value="/resources/vendor/datatables/css/dataTables.bootstrap4.css"/>" rel="stylesheet">--%>
 
     <!-- Custom CSS -->
     <link href="<c:url value="/resources/dist/css/sb-admin-2.css"/>" rel="stylesheet">
