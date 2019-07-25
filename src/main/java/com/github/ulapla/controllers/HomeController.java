@@ -21,7 +21,11 @@ public class HomeController {
     }
     @GetMapping("/home")
     public String mainPage(Model model){
-        model.addAttribute("quantityAll", itemService.findAll().stream().map(Item::getQuantity).reduce(Integer::sum).get());
+        if(itemService.findAll().isEmpty()){
+            model.addAttribute("quantityAll",0);
+        }else {
+            model.addAttribute("quantityAll", itemService.findAll().stream().map(Item::getQuantity).reduce(Integer::sum).get());
+        }
         return "home";
     }
 }

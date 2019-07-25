@@ -28,15 +28,15 @@ public class Application{
 
 
 
-    @Bean
-    public Docket newsApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-               // .groupName("Book API")
-                //.apiInfo(apiInfo())
-                .select()
-                .paths(regex("/api.*"))
-                .build();
-    }
+//    @Bean
+//    public Docket newsApi() {
+//        return new Docket(DocumentationType.SWAGGER_2)
+//               // .groupName("Book API")
+//                //.apiInfo(apiInfo())
+//                .select()
+//                .paths(regex("/api.*"))
+//                .build();
+//    }
 
 //    private ApiInfo apiInfo() {
 //        return new ApiInfoBuilder()

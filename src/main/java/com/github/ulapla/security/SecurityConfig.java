@@ -39,15 +39,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").authenticated()
                 .and().formLogin();
     }
-//
-//    @Bean
-//    public SpringDataUserDetailsService customUserDetailsService() {
-//
-//        return new SpringDataUserDetailsService();
-//    }
 
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public SpringDataUserDetailsService customUserDetailsService() {
+
+        return new SpringDataUserDetailsService();
+    }
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }
