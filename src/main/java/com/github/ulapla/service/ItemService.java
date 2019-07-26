@@ -61,5 +61,8 @@ public class ItemService {
        return itemRepository.findAll(pageable);
     }
 
+    public int countAllItems(){
+        return itemRepository.allItemsSum();
+    }
 
 }

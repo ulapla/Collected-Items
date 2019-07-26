@@ -24,7 +24,7 @@ public class HomeController {
         if(itemService.findAll().isEmpty()){
             model.addAttribute("quantityAll",0);
         }else {
-            model.addAttribute("quantityAll", itemService.findAll().stream().map(Item::getQuantity).reduce(Integer::sum).get());
+            model.addAttribute("quantityAll", itemService.countAllItems());
         }
         return "home";
     }
