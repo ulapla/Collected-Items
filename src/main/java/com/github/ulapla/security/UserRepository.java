@@ -1,4 +1,4 @@
-package com.github.ulapla.auth;
+package com.github.ulapla.security;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -1,4 +1,4 @@
-package com.github.ulapla.auth;
+package com.github.ulapla.security;
 
 
 import org.springframework.context.annotation.Bean;
@@ -35,8 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 //    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
+//    public void configure(AuthenticationManagerBuilder security) throws Exception {
+//        security.inMemoryAuthentication()
 //                .withUser("user1").password("{noop}user123").roles("USER")
 //                .and()
 //                .withUser("admin1").password("{noop}admin123").roles("ADMIN");

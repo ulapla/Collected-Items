@@ -1,4 +1,4 @@
-package com.github.ulapla.auth;
+package com.github.ulapla.security;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

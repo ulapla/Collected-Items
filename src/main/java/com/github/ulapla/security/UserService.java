@@ -1,4 +1,4 @@
-package com.github.ulapla.auth;
+package com.github.ulapla.security;
 
 public interface UserService {
 

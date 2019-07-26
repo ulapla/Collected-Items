@@ -1,4 +1,4 @@
-package com.github.ulapla.auth;
+package com.github.ulapla.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
