@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib tagdir="/WEB-INF/tags/util" prefix="util"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <style type="text/css">
 
     li
@@ -41,7 +42,6 @@
                                     <tr>
                                         <form action="/api/item/search/" method="post">
                                            <td> <input type="text" name="name"/></td>
-
                                             <td> <select name="categoryId">
                                                 <option></option>
                                                 <c:forEach items="${categories}" var="category">

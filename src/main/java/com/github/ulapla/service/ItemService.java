@@ -28,8 +28,8 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public List<Item> findByCategory(Category category){
-        return itemRepository.findByCategory(category);
+    public Page<Item> findByCategory(Category category, Pageable pageable){
+        return itemRepository.findByCategory(category, pageable);
     }
 
     public void saveItem(Item item){
@@ -49,12 +49,12 @@ public class ItemService {
         itemRepository.delete(itemRepository.findById(id).get());
     }
 
-    public List<Item> findByName(String name){
-        return itemRepository.findByNameContaining(name);
+    public Page<Item> findByName(String name, Pageable pageable){
+        return itemRepository.findByNameContaining(name, pageable);
     }
 
-    public List<Item>findByDescription(String s){
-        return itemRepository.findByDescriptionContaining(s);
+    public Page<Item>findByDescription(String s, Pageable pageable){
+        return itemRepository.findByDescriptionContaining(s,pageable);
     }
 
     public Page<Item> findAll(Pageable pageable){

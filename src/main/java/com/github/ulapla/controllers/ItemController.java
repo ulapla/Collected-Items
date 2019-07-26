@@ -115,16 +115,18 @@ public class ItemController {
     public String search(@RequestParam String name,
                          @RequestParam(required = false) Long categoryId,
                          @RequestParam String description,
-                         Model model) {
+                         Model model,
+                         Pageable pageable) {
 
         if (categoryId != null) {
-            model.addAttribute("items", itemService.findByCategory(categoryService.findById(categoryId)));
+            model.addAttribute("page", itemService.findByCategory(categoryService.findById(categoryId),pageable));
         }
         else if (!name.equals("")) {
-            model.addAttribute("items", itemService.findByName(name));
+            Page<Item> page = itemService.findByName(name, pageable);
+            model.addAttribute("page", page);
         }
         else if(!description.equals("")){
-            model.addAttribute("items",itemService.findByDescription(description));
+            model.addAttribute("page",itemService.findByDescription(description, pageable));
         }
         return "item/all_item";
     }
