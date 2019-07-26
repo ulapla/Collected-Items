@@ -1,4 +1,4 @@
-package com.github.ulapla.security;
+package com.github.ulapla.auth;
 
 import lombok.Data;
 
@@ -14,4 +14,5 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
 }

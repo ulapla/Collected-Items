@@ -1,4 +1,4 @@
-package com.github.ulapla.security;
+package com.github.ulapla.auth;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -7,24 +7,24 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, RoleRepository roleRepository,
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
                            BCryptPasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
-
-
+    @Override
     public User findByUserName(String username) {
+
         return userRepository.findByUsername(username);
     }
-
+    @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(1);
