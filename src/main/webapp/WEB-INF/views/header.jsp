@@ -51,18 +51,18 @@
             <%--            </button>--%>
         </div>
         <ul class="nav navbar-nav ml-md-auto flex-row navbar-top-links">
-            <%--            <li class="nav-item dropdown">--%>
-            <%--                <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"--%>
-            <%--                   aria-haspopup="true" aria-expanded="false">--%>
-            <%--                    <i class="fa fa-user fa-fw"></i>--%>
-            <%--                </a>--%>
-            <%--                <div class="dropdown-menu dropdown-menu-right dropdown-user">--%>
-            <%--                    <a class="dropdown-item" href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>--%>
-            <%--                    <a class="dropdown-item" href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>--%>
-            <%--                    <div class="dropdown-divider"></div>--%>
-            <%--                    <a class="dropdown-item" href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>--%>
-            <%--                </div>--%>
-            <%--            </li>--%>
+                        <li class="nav-item dropdown">
+                            <a style="background-color: rgb(240, 240, 240)" class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-user">
+                                <a class="dropdown-item" href="/login"><i class="fa fa-user fa-fw"></i>Zaloguj</a>
+                                <a class="dropdown-item" href="/logout"><i class="fa fa-plus-circle fa-fw"></i>Nowy użytkownik</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/create/user"><i class="fa fa-sign-out fa-fw"></i>Wyloguj</a>
+                            </div>
+                        </li>
         </ul>
     </header>
     <div class="d-md-flex">
