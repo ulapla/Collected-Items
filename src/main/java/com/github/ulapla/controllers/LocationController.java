@@ -1,8 +1,10 @@
 package com.github.ulapla.controllers;
 
 import com.github.ulapla.model.Location;
+import com.github.ulapla.security.CurrentUser;
 import com.github.ulapla.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,8 +24,8 @@ public class LocationController {
     }
 
     @GetMapping("/all")
-    public String allLocations(Model model){
-        model.addAttribute("locations",locationService.findAll());
+    public String allLocations(Model model, @AuthenticationPrincipal CurrentUser customUser){
+        model.addAttribute("locations",locationService.findAll(customUser.getUser().getId()));
         return "location/all_location";
     }
 
@@ -34,10 +36,13 @@ public class LocationController {
     }
 
     @PostMapping("/add")
-    public String saveLocation(@Valid Location location, BindingResult result){
+    public String saveLocation(@Valid Location location,
+                               BindingResult result,
+                               @AuthenticationPrincipal CurrentUser customUser){
         if (result.hasErrors()) {
             return "/location/add_location";
         }
+        location.setUserId(customUser.getUser().getId());
         locationService.saveLocation(location);
         return "redirect:/api/location/add";
     }

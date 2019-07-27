@@ -5,12 +5,14 @@ import com.github.ulapla.model.Item;
 import com.github.ulapla.model.ItemLocation;
 import com.github.ulapla.model.Location;
 import com.github.ulapla.repository.ItemRepository;
+import com.github.ulapla.security.CurrentUser;
 import com.github.ulapla.service.CategoryService;
 import com.github.ulapla.service.ItemLocationService;
 import com.github.ulapla.service.ItemService;
 import com.github.ulapla.service.LocationService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,18 +39,18 @@ public class ItemController {
     }
 
     @ModelAttribute("locations")
-    public List<Location> locations() {
-        return locationService.findAll();
+    public List<Location> locations(@AuthenticationPrincipal CurrentUser customUser) {
+        return locationService.findAll(customUser.getUser().getId());
     }
 
     @ModelAttribute("categories")
-    public List<Category> categories() {
-        return categoryService.findAll();
+    public List<Category> categories(@AuthenticationPrincipal CurrentUser customUser) {
+        return categoryService.findAll(customUser.getUser().getId());
     }
 
     @GetMapping("/all")
-    public String printItems(Model model, Pageable pageable) {
-        Page<Item> page = itemService.findAll(pageable);
+    public String printItems(Model model, Pageable pageable, @AuthenticationPrincipal CurrentUser customUser) {
+        Page<Item> page = itemService.findAll(pageable, customUser.getUser().getId());
         model.addAttribute("page", page);
         return "item/all_item";
     }
@@ -60,10 +62,12 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processForm(Model model, @Valid Item item, BindingResult result) {
+    public String processForm(Model model, @Valid Item item, BindingResult result,
+                              @AuthenticationPrincipal CurrentUser customUser) {
         if (result.hasErrors()) {
             return "item/add_item";
         }
+        item.setUserId(customUser.getUser().getId());
         itemService.saveItem(item);
         return "redirect:/api/item/" + item.getId() + "/add/location";
     }
@@ -116,17 +120,19 @@ public class ItemController {
                          @RequestParam(required = false) Long categoryId,
                          @RequestParam String description,
                          Model model,
+                         @AuthenticationPrincipal CurrentUser customUser,
                          Pageable pageable) {
 
         if (categoryId != null) {
-            model.addAttribute("page", itemService.findByCategory(categoryService.findById(categoryId),pageable));
+            model.addAttribute("page", itemService.findByCategory(
+                    categoryService.findById(categoryId),pageable,customUser.getUser().getId()));
         }
         else if (!name.equals("")) {
-            Page<Item> page = itemService.findByName(name, pageable);
+            Page<Item> page = itemService.findByName(name, pageable,customUser.getUser().getId());
             model.addAttribute("page", page);
         }
         else if(!description.equals("")){
-            model.addAttribute("page",itemService.findByDescription(description, pageable));
+            model.addAttribute("page",itemService.findByDescription(description, pageable, customUser.getUser().getId()));
         }
         return "item/all_item";
     }

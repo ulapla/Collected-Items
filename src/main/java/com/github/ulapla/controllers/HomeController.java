@@ -1,8 +1,7 @@
 package com.github.ulapla.controllers;
 
-import com.github.ulapla.model.Item;
 import com.github.ulapla.security.CurrentUser;
-import com.github.ulapla.security.User;
+import com.github.ulapla.model.User;
 import com.github.ulapla.service.ItemService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,7 +25,7 @@ public class HomeController {
     public String mainPage(Model model,@AuthenticationPrincipal CurrentUser customUser){
         User entityUser = customUser.getUser();
         model.addAttribute("user",entityUser);
-        if(itemService.findAll().isEmpty()){
+        if(itemService.findAll(customUser.getUser().getId()).isEmpty()){
             model.addAttribute("quantityAll",0);
         }else {
             model.addAttribute("quantityAll", itemService.countAllItems());

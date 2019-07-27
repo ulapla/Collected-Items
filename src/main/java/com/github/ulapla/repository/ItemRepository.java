@@ -14,12 +14,15 @@ import java.util.List;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
-    public Page<Item> findByNameContaining(String name, Pageable pageable);
-    public Page<Item> findByCategory(Category category, Pageable pageable);
-    public Page<Item> findByDescriptionContaining(String string, Pageable pageable);
+     Page<Item> findByNameContainingAndUserId(String name, Pageable pageable, Long userId);
+     Page<Item> findByCategoryAndUserId(Category category, Pageable pageable, Long userId);
+     Page<Item> findByDescriptionContainingAndUserId(String string, Pageable pageable, Long userId);
 
-    @Query(value = "SELECT SUM(quantity) FROM item", nativeQuery = true)
+    @Query(value = "SELECT SUM(quantity) FROM item;", nativeQuery = true)
     int allItemsSum();
+
+    Page<Item> findAllByUserId(Pageable pageable, Long userId);
+    List<Item> findAllByUserId(Long userId);
 
 
 }

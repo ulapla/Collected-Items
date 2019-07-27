@@ -17,6 +17,7 @@ public class Location {
     private String position;
     @OneToMany(mappedBy = "location",cascade = CascadeType.REMOVE)
     private Set<ItemLocation> itemLocations;
+    private Long userId;
 
     public String getName(){
         return this.place + " " +this.position;
@@ -53,5 +54,13 @@ public class Location {
 
     public void setItemLocations(Set<ItemLocation> itemLocations) {
         this.itemLocations = itemLocations;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

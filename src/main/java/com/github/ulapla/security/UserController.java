@@ -1,11 +1,11 @@
 package com.github.ulapla.security;
 
+import com.github.ulapla.model.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -39,7 +39,7 @@ public class UserController {
         us.setUsername(user.getUsername());
         us.setEnabled(1);
         userService.saveUser(us);
-        return "redirect:/home";
+        return "redirect:/api/home";
     }
 
     @GetMapping("/admin")

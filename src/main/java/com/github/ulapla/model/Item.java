@@ -25,6 +25,7 @@ public class Item {
     private Set<ItemLocation> itemLocations = new HashSet<>();
     @Min(0)
     private int quantity;
+    private Long userId;
 
 
     public Long getId() {
@@ -89,5 +90,14 @@ public class Item {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

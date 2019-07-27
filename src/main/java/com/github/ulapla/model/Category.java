@@ -16,6 +16,7 @@ public class Category {
     private String name;
     @OneToMany(mappedBy = "category")
     private Set<Item> items;
+    private Long userId;
 
     public Long getId() {
         return id;
@@ -39,5 +40,13 @@ public class Category {
 
     public void setItems(Set<Item> items) {
         this.items = items;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 }

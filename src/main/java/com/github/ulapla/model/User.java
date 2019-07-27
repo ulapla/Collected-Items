@@ -1,5 +1,9 @@
-package com.github.ulapla.security;
+package com.github.ulapla.model;
 
+import com.github.ulapla.model.Category;
+import com.github.ulapla.model.Item;
+import com.github.ulapla.model.Location;
+import com.github.ulapla.security.Role;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -17,4 +21,10 @@ public class User {
     private int enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Role> roles;
+    @OneToMany(mappedBy = "userId")
+    private Set<Item> items;
+    @OneToMany(mappedBy = "userId")
+    private Set<Category> categories;
+    @OneToMany(mappedBy = "userId")
+    private Set<Location> locations;
 }

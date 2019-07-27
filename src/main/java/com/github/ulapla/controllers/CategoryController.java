@@ -1,8 +1,10 @@
 package com.github.ulapla.controllers;
 
 import com.github.ulapla.model.Category;
+import com.github.ulapla.security.CurrentUser;
 import com.github.ulapla.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,8 +29,8 @@ public class CategoryController {
     }
 
     @GetMapping("/all")
-    public String allCategories(Model model){
-        model.addAttribute("categories",categoryService.findAll());
+    public String allCategories(Model model,@AuthenticationPrincipal CurrentUser customUser){
+        model.addAttribute("categories",categoryService.findAll(customUser.getUser().getId()));
         return "category/all_category";
     }
 
@@ -39,10 +41,12 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String saveCategory(@Valid Category category, BindingResult result){
+    public String saveCategory(@Valid Category category, BindingResult result,
+                               @AuthenticationPrincipal CurrentUser customUser){
         if (result.hasErrors()) {
             return"category/add_category";
         }
+        category.setUserId(customUser.getUser().getId());
         categoryService.saveCategory(category);
         return "redirect:/api/category/all";
     }

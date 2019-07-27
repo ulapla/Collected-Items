@@ -24,12 +24,12 @@ public class ItemService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Item> findAll(){
-        return itemRepository.findAll();
+    public List<Item> findAll(Long userId){
+        return itemRepository.findAllByUserId(userId);
     }
 
-    public Page<Item> findByCategory(Category category, Pageable pageable){
-        return itemRepository.findByCategory(category, pageable);
+    public Page<Item> findByCategory(Category category, Pageable pageable, Long userId){
+        return itemRepository.findByCategoryAndUserId(category, pageable, userId);
     }
 
     public void saveItem(Item item){
@@ -49,16 +49,16 @@ public class ItemService {
         itemRepository.delete(itemRepository.findById(id).get());
     }
 
-    public Page<Item> findByName(String name, Pageable pageable){
-        return itemRepository.findByNameContaining(name, pageable);
+    public Page<Item> findByName(String name, Pageable pageable, Long userId){
+        return itemRepository.findByNameContainingAndUserId(name, pageable,userId);
     }
 
-    public Page<Item>findByDescription(String s, Pageable pageable){
-        return itemRepository.findByDescriptionContaining(s,pageable);
+    public Page<Item>findByDescription(String s, Pageable pageable, Long userId){
+        return itemRepository.findByDescriptionContainingAndUserId(s,pageable, userId);
     }
 
-    public Page<Item> findAll(Pageable pageable){
-       return itemRepository.findAll(pageable);
+    public Page<Item> findAll(Pageable pageable, Long userId){
+       return itemRepository.findAllByUserId(pageable,userId);
     }
 
     public int countAllItems(){

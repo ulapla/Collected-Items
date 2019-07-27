@@ -17,8 +17,8 @@ public class LocationService {
         this.locationRepository = locationRepository;
     }
 
-    public List<Location> findAll(){
-        return locationRepository.findAll();
+    public List<Location> findAll(Long userId){
+        return locationRepository.findAllByUserId(userId);
     }
 
     public Location findOneById(Long id){

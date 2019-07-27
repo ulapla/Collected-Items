@@ -4,7 +4,7 @@
 <div id="page-wrapper" class="p-4">
     <div class="row">
         <div class="col-xl-12">
-            <h1 class="page-header">Collected items</h1>
+            <h2 class="page-header">Zaloguj się</h2>
         </div>
         <!-- /.col-xl-12 -->
     </div>
