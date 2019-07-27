@@ -17,6 +17,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
     @GetMapping("/create/user")
     public String createUser(Model model) {
         User user = new User();

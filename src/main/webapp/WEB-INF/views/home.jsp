@@ -15,7 +15,7 @@
                 <!-- /.card-header -->
                 <div class="card-body">
 
-
+<h2>Witaj ${user.username}</h2>
 <h2 class="page-header">Ilość wszystkich elementów: ${quantityAll}</h2>
     <form action="/api/item/search/" method="post">
         Nazwa: <input type="text" class="form-control" name="name"/>

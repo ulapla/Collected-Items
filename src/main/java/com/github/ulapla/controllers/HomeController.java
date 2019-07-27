@@ -1,7 +1,10 @@
 package com.github.ulapla.controllers;
 
 import com.github.ulapla.model.Item;
+import com.github.ulapla.security.CurrentUser;
+import com.github.ulapla.security.User;
 import com.github.ulapla.service.ItemService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +19,13 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String redirectToHome(){
-        return "redirect:/home";
+    public String landingPage(){
+        return "landing-page";
     }
-    @GetMapping("/home")
-    public String mainPage(Model model){
+    @GetMapping("/api/home")
+    public String mainPage(Model model,@AuthenticationPrincipal CurrentUser customUser){
+        User entityUser = customUser.getUser();
+        model.addAttribute("user",entityUser);
         if(itemService.findAll().isEmpty()){
             model.addAttribute("quantityAll",0);
         }else {

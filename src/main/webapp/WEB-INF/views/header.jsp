@@ -58,9 +58,9 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-user">
                                 <a class="dropdown-item" href="/login"><i class="fa fa-user fa-fw"></i>Zaloguj</a>
-                                <a class="dropdown-item" href="/logout"><i class="fa fa-plus-circle fa-fw"></i>Nowy użytkownik</a>
+                                <a class="dropdown-item" href="/create/user"><i class="fa fa-plus-circle fa-fw"></i>Nowy użytkownik</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="/create/user"><i class="fa fa-sign-out fa-fw"></i>Wyloguj</a>
+                                <a class="dropdown-item" href="/logout"><i class="fa fa-sign-out fa-fw"></i>Wyloguj</a>
                             </div>
                         </li>
         </ul>
@@ -81,7 +81,7 @@
                     <%--                        <!-- /input-group -->--%>
                     <%--                    </li>--%>
                     <li class="list-group-item">
-                        <a href="/home">Strona główna</a>
+                        <a href="/api/home">Strona główna</a>
                     </li>
                     <li class="list-group-item">
                         <a href="/api/item/all">Wszystkie elementy</a>

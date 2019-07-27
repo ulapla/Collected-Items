@@ -19,15 +19,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/**").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll()
                 .and().formLogin()
-//                .loginPage("/login")
+                .loginPage("/login")
                 .and().logout().logoutSuccessUrl("/")
                 .permitAll();
 
     }
 
+
     @Bean
     public SpringDataUserDetailsService customUserDetailsService() {
-
         return new SpringDataUserDetailsService();
     }
 
