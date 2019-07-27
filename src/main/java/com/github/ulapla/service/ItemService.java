@@ -61,8 +61,8 @@ public class ItemService {
        return itemRepository.findAllByUserId(pageable,userId);
     }
 
-    public int countAllItems(){
-        return itemRepository.allItemsSum();
+    public int countAllItems(Long userId){
+        return itemRepository.allItemsSum(userId);
     }
 
 }

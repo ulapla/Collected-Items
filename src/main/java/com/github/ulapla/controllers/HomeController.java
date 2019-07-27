@@ -21,14 +21,16 @@ public class HomeController {
     public String landingPage(){
         return "landing-page";
     }
+
+
     @GetMapping("/api/home")
     public String mainPage(Model model,@AuthenticationPrincipal CurrentUser customUser){
-        User entityUser = customUser.getUser();
+        String entityUser = customUser.getUser().getUsername();
         model.addAttribute("user",entityUser);
         if(itemService.findAll(customUser.getUser().getId()).isEmpty()){
             model.addAttribute("quantityAll",0);
         }else {
-            model.addAttribute("quantityAll", itemService.countAllItems());
+            model.addAttribute("quantityAll", itemService.countAllItems(customUser.getUser().getId()));
         }
         return "home";
     }

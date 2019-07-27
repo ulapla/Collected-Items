@@ -18,8 +18,8 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
      Page<Item> findByCategoryAndUserId(Category category, Pageable pageable, Long userId);
      Page<Item> findByDescriptionContainingAndUserId(String string, Pageable pageable, Long userId);
 
-    @Query(value = "SELECT SUM(quantity) FROM item;", nativeQuery = true)
-    int allItemsSum();
+    @Query(value = "SELECT SUM(i.quantity) FROM Item i where i.userId = ?1 ")
+    int allItemsSum(Long userId);
 
     Page<Item> findAllByUserId(Pageable pageable, Long userId);
     List<Item> findAllByUserId(Long userId);
