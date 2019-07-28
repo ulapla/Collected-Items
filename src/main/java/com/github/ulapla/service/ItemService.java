@@ -14,10 +14,12 @@ import java.util.List;
 public class ItemService {
 
     private ItemRepository itemRepository;
+    private ItemLocationService itemLocationService;
 
     @Autowired
-    public ItemService(ItemRepository itemRepository) {
+    public ItemService(ItemRepository itemRepository, ItemLocationService itemLocationService) {
         this.itemRepository = itemRepository;
+        this.itemLocationService = itemLocationService;
     }
 
     public List<Item> findAll(Long userId){
@@ -32,7 +34,7 @@ public class ItemService {
         if(item.getId()!=null) {
             Item item1 = itemRepository.findById(item.getId()).get();
             item.setItemLocations(item1.getItemLocations());
-            item.setQuantity();
+            item.setQuantity(itemLocationService.countItemQuantity(item));
         }
         itemRepository.save(item);
     }

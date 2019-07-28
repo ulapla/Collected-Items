@@ -21,7 +21,7 @@
             <td>${item.category.name}</td>
             <td>${item.description}</td>
             <td>${item.quantity}</td>
-            <td> <a class="btn" href="/api/item/delete/${item.id}">Usuń element</a></td>
+            <td> <a class="confirm" href="/api/item/delete/${item.id}">Usuń element</a></td>
         </tr>
     </table>
     <div class="col-xl-12">
@@ -74,7 +74,7 @@
                                     </form>
                                 </td>
 
-                                <td><a href="/api/item/location/edit/${itemLocation.id}">Zmień ilość</a></td>
+<%--                                <td><a href="/api/item/location/edit/${itemLocation.id}">Zmień ilość</a></td>--%>
                                 <td><a class="confirm" href="/api/item/location/delete/${itemLocation.id}">Usuń</a></td>
                             </tr>
                         </c:forEach>

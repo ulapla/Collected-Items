@@ -21,7 +21,7 @@ public class ItemLocationService {
     public void saveItemLocation(ItemLocation itemLocation){
         itemLocationRepository.save(itemLocation);
         Item item = itemLocation.getItem();
-        item.setQuantity();
+        item.setQuantity(countItemQuantity(item));
         itemRepository.save(item);
     }
 
@@ -32,7 +32,18 @@ public class ItemLocationService {
     public void deleteItemLocation(ItemLocation itemLocation){
         Item item = itemLocation.getItem();
         itemLocationRepository.delete(itemLocation);
-        item.setQuantity();
+        item.setQuantity(countItemQuantity(item));
         itemRepository.save(item);
+    }
+
+    public int countItemQuantity(Item item){
+        int quantity = 0;
+        if(item.getItemLocations().size() == 1){
+            quantity = item.getItemLocations().iterator().next().getQuantity();
+        }
+        else if (item.getItemLocations().size() > 1) {
+            quantity = itemLocationRepository.sumItemQuantityFromLocations(item);
+        }
+        return quantity;
     }
 }

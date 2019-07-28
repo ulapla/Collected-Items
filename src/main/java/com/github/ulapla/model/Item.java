@@ -56,15 +56,8 @@ public class Item {
         return quantity;
     }
 
-    public void setQuantity() { // TODO: 17.07.19  move to service
-        if (itemLocations.size() > 0) {
-            quantity = itemLocations.stream()
-                    .map(ItemLocation::getQuantity)
-                    .reduce(Integer::sum)
-                    .get();
-        } else {
-            quantity = 0;
-        }
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     public String getFileName() {
