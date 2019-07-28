@@ -51,7 +51,7 @@
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
-
+        <h3>Lokalizacje</h3>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <table width="100%" class="table table-striped table-bordered table-hover"
@@ -71,6 +71,7 @@
                                     <form action="/api/item/quick/sub" method="post" >
                                         <input type="number" name="usedQuantity"/>
                                         <input type="hidden" name="itemLocationId" value="${itemLocation.id}">
+                                        <input type="submit" value="Zatwierdź"/>
                                     </form>
                                 </td>
 

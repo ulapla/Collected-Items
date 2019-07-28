@@ -24,11 +24,10 @@
                 <div class="card-body">
                     <form:form method="post" action="/create/user" modelAttribute="user">
                     <div><form:errors path="*" class="has-error" /></div>
-                    <p>Login: <form:input class="form-control" id="name" path="username"/></p>
 
-                    <p>Hasło: <form:input class="form-control" id="description" path="password"/></p>
+                            <div><label> Login : <input type="text" name="username"/> </label></div>
+                            <div><label> Hasło: <input type="password" name="password"/> </label></div>
 
-                    </p>
 
                     <p><button type="submit" value="Save">Zapisz</button></p>
                     </form:form>

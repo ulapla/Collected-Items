@@ -45,7 +45,7 @@ public class CategoryController {
         }
         category.setUserId(customUser.getUser().getId());
         categoryService.saveCategory(category);
-        return "redirect:/api/category/all";
+        return "redirect:/api/category/add";
     }
 
     @GetMapping("/delete/{id}")

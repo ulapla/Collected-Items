@@ -38,10 +38,7 @@ public class ItemLocationService {
 
     public int countItemQuantity(Item item){
         int quantity = 0;
-        if(item.getItemLocations().size() == 1){
-            quantity = item.getItemLocations().iterator().next().getQuantity();
-        }
-        else if (item.getItemLocations().size() > 1) {
+        if (item.getItemLocations().size() > 0) {
             quantity = itemLocationRepository.sumItemQuantityFromLocations(item);
         }
         return quantity;

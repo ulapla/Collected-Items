@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@tag pageEncoding="UTF-8" %>
 
 <%@ attribute name="thispage"
               type="org.springframework.data.domain.Page" required="true"
@@ -19,10 +20,10 @@
                 </spring:url>
                 <spring:message code="list_first" var="first_label" text="First"
                                 htmlEscape="false" />
-                <li><a href="${first}" title="${fn:escapeXml(first_label)}">First</a></li>
+                <li><a href="${first}" title="${fn:escapeXml(first_label)}">Pierwsza</a></li>
             </c:when>
             <c:otherwise>
-                <li class="disabled"><a href="#">First</a></li>
+                <li class="disabled"><a href="#">Pierwsza</a></li>
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -34,15 +35,15 @@
                 <spring:message code="list_previous" var="previous_label"
                                 text="Previous" htmlEscape="false" />
                 <li><a href="${previous}"
-                       title="${fn:escapeXml(previous_label)}">Previous</a></li>
+                       title="${fn:escapeXml(previous_label)}">Poprzednia</a></li>
             </c:when>
             <c:otherwise>
                 <li class="disabled"><a href="#"
-                                        title="${fn:escapeXml(previous_label)}">Previous</a></li>
+                                        title="${fn:escapeXml(previous_label)}">Poprzednia</a></li>
             </c:otherwise>
         </c:choose>
         <c:out value=" " />
-        <spring:message code="list_page" text="Page {0} of {1}"
+        <spring:message code="list_page" text="Strona {0} z {1}"
                         arguments="${pageNumber + 1},${maxPages}" argumentSeparator="," />
         <c:out value=" " />
         <c:choose>
@@ -55,10 +56,10 @@
                             var="next_image_url" />
                 <spring:message code="list_next" var="next_label" text="Next"
                                 htmlEscape="false" />
-                <li><a href="${next}" title="${fn:escapeXml(next_label)}">Next</a></li>
+                <li><a href="${next}" title="${fn:escapeXml(next_label)}">Następna</a></li>
             </c:when>
             <c:otherwise>
-                <li class="disabled"><a href="#">Next</a></li>
+                <li class="disabled"><a href="#">Następna</a></li>
             </c:otherwise>
         </c:choose>
         <c:choose>
@@ -69,17 +70,17 @@
                 </spring:url>
                 <spring:message code="list_last" var="last_label" text="Last"
                                 htmlEscape="false" />
-                <li><a href="${last}" title="${fn:escapeXml(last_label)}">Last</a></li>
+                <li><a href="${last}" title="${fn:escapeXml(last_label)}">Ostatnia</a></li>
             </c:when>
             <c:otherwise>
                 <li class="disabled"><a href="#"
-                                        title="${fn:escapeXml(last_label)}">Last</a></li>
+                                        title="${fn:escapeXml(last_label)}">Ostatnia</a></li>
             </c:otherwise>
         </c:choose>
     </ul>
     <ul class="pager text-right">
         <spring:message code="list_size" var="list_size"
-                        text="Records per page" htmlEscape="false" />
+                        text="Wyników na stronie" htmlEscape="false" />
         <c:out value="${list_size} " />
         <c:forEach var="i" begin="5" end="25" step="5">
             <c:choose>
