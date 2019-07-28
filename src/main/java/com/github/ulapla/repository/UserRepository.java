@@ -1,4 +1,4 @@
-package com.github.ulapla.security;
+package com.github.ulapla.repository;
 
 import com.github.ulapla.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,6 @@
 package com.github.ulapla.controllers;
 
 import com.github.ulapla.security.CurrentUser;
-import com.github.ulapla.model.User;
 import com.github.ulapla.service.ItemService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

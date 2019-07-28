@@ -1,5 +1,6 @@
-package com.github.ulapla.security;
+package com.github.ulapla.repository;
 
+import com.github.ulapla.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

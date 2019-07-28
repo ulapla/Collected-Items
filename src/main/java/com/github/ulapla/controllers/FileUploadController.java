@@ -1,8 +1,6 @@
 package com.github.ulapla.controllers;
 
 import java.io.IOException;
-import java.util.stream.Collectors;
-
 import com.github.ulapla.model.Item;
 import com.github.ulapla.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.ulapla.storage.StorageFileNotFoundException;

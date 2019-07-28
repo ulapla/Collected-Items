@@ -1,6 +1,8 @@
-package com.github.ulapla.security;
+package com.github.ulapla.controllers;
 
 import com.github.ulapla.model.User;
+import com.github.ulapla.security.CurrentUser;
+import com.github.ulapla.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,9 +27,6 @@ public class UserController {
     @GetMapping("/create/user")
     public String createUser(Model model) {
         User user = new User();
-//        user.setUsername("admin");
-//        user.setPassword("admin");
-        //userService.saveUser(user);
         model.addAttribute("user", user);
         return "/user/create";
     }

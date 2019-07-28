@@ -1,6 +1,9 @@
-package com.github.ulapla.security;
+package com.github.ulapla.service;
 
+import com.github.ulapla.model.Role;
 import com.github.ulapla.model.User;
+import com.github.ulapla.repository.RoleRepository;
+import com.github.ulapla.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 

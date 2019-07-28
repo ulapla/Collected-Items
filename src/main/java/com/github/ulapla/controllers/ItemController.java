@@ -4,7 +4,6 @@ import com.github.ulapla.model.Category;
 import com.github.ulapla.model.Item;
 import com.github.ulapla.model.ItemLocation;
 import com.github.ulapla.model.Location;
-import com.github.ulapla.repository.ItemRepository;
 import com.github.ulapla.security.CurrentUser;
 import com.github.ulapla.service.CategoryService;
 import com.github.ulapla.service.ItemLocationService;
@@ -62,7 +61,7 @@ public class ItemController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String processForm(Model model, @Valid Item item, BindingResult result,
+    public String processForm(@Valid Item item, BindingResult result,
                               @AuthenticationPrincipal CurrentUser customUser) {
         if (result.hasErrors()) {
             return "item/add_item";

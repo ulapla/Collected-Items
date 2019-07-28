@@ -1,6 +1,7 @@
 package com.github.ulapla.security;
 
 import com.github.ulapla.model.User;
+import com.github.ulapla.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

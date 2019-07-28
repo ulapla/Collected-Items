@@ -1,9 +1,5 @@
 package com.github.ulapla.model;
 
-import com.github.ulapla.model.Category;
-import com.github.ulapla.model.Item;
-import com.github.ulapla.model.Location;
-import com.github.ulapla.security.Role;
 import lombok.Data;
 
 import javax.persistence.*;

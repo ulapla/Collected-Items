@@ -2,7 +2,6 @@ package com.github.ulapla.service;
 
 import com.github.ulapla.model.Category;
 import com.github.ulapla.model.Item;
-import com.github.ulapla.repository.CategoryRepository;
 import com.github.ulapla.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,13 +14,10 @@ import java.util.List;
 public class ItemService {
 
     private ItemRepository itemRepository;
-    private CategoryRepository categoryRepository;
-
 
     @Autowired
-    public ItemService(ItemRepository itemRepository, CategoryRepository categoryRepository) {
+    public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-        this.categoryRepository = categoryRepository;
     }
 
     public List<Item> findAll(Long userId){
@@ -64,5 +60,6 @@ public class ItemService {
     public int countAllItems(Long userId){
         return itemRepository.allItemsSum(userId);
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.github.ulapla.security;
+package com.github.ulapla.service;
 
 import com.github.ulapla.model.User;
 
