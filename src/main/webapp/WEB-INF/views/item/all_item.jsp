@@ -27,10 +27,10 @@
                         <!-- /.card-header -->
                         <div class="card-body">
 
-
-                            <table width="100%" class="table table-striped table-bordered table-hover"
-                                   id="dataTables-example">
-                                <thead>
+                            <div class="table-responsive">
+                                <table width="100%" class="table table-striped table-bordered table-hover"
+                                       id="dataTables-example">
+                                    <thead>
                                     <tr>
                                         <th>Nazwa/wartość</th>
                                         <th>Rodzaj</th>
@@ -41,38 +41,46 @@
 
                                     <tr>
                                         <form action="/api/item/search/" method="post">
-                                           <td> <input type="text" name="name"/></td>
-                                            <td> <select name="categoryId">
+                                            <td><input type="text" name="name"/></td>
+                                            <td><select name="categoryId">
                                                 <option></option>
                                                 <c:forEach items="${categories}" var="category">
                                                     <option value="${category.id}">${category.name}</option>
                                                 </c:forEach>
                                             </select>
 
-                                            <td> <input type="text" name="description"/></td>
+                                            <td><input type="text" name="description"/></td>
                                             <td></td>
                                             <td></td>
-                                            <td><button type="submit">Szukaj</button> </td>
+                                            <td>
+                                                <button type="submit">Szukaj</button>
+                                            </td>
 
                                         </form>
 
                                     </tr>
-                                </thead>
-                                <c:forEach items="${page.content}" var="item">
-                                     <tr>
-                                         <td><a href="/api/item/show/${item.id}">${item.name}</a></td>
-                                        <td>${item.category.name}</td>
-                                        <td>${item.description}</td>
-                                        <td>${item.quantity}</td>
-                                        <td><c:forEach items="${item.itemLocations}" var="location">
-                                            ${location.location.name}<br>
-                                        </c:forEach>
-                                        </td>
+                                    </thead>
+                                    <c:forEach items="${page.content}" var="item">
+                                        <tr>
+                                            <td>${item.name}</td>
+                                            <td>${item.category.name}</td>
+                                            <td>${item.description}</td>
+                                            <td>${item.quantity}</td>
+                                            <td><c:forEach items="${item.itemLocations}" var="location">
+                                                ${location.location.name}<br>
+                                            </c:forEach>
+                                            </td>
+                                            <td>
+                                                <form action="/api/item/show/${item.id}">
+                                                    <button>Szczegóły</button>
+                                                </form>
+                                            </td>
 
-                                    </tr>
-                                </c:forEach>
+                                        </tr>
+                                    </c:forEach>
 
-                            </table>
+                                </table>
+                            </div>
                         </div>
                         <util:pagination thispage="${page}"></util:pagination>
                         <!-- /.card-body -->

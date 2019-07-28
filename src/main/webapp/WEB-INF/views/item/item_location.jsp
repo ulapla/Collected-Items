@@ -10,7 +10,7 @@
         <!-- /.col-xl-12 -->
     </div>
     <!-- /.row -->
-    <table width="100%" class="table table-striped table-bordered table-hover">
+    <table width="100%" class="table table-striped table-bordered table-hover table-responsive">
         <tr>
             <th>Nazwa/wartość</th>
             <th>Rodzaj</th>
@@ -28,12 +28,12 @@
         <p>
         <c:choose>
             <c:when test="${item.fileName != null}">
-                <form style="display: inline" action="/file/get/${item.fileName}">
+                <form style="display: inline" action="/api/file/get/${item.fileName}">
                     <input type="submit" value="Nota aplikacyjna"/>
                 </form>
             </c:when>
             <c:otherwise>
-                <form style="display: inline" action="/file/add/${item.id}">
+                <form style="display: inline" action="/api/file/add/${item.id}">
                     <input  type="submit" value="Dodaj notę aplikacyjną"/>
                 </form>
             </c:otherwise>
@@ -54,7 +54,7 @@
         <h3>Lokalizacje</h3>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover"
+                    <table width="100%" class="table table-striped table-bordered table-hover table-responsive"
                            id="dataTables-example">
                         <tr>
                             <th>Miejsce</th>

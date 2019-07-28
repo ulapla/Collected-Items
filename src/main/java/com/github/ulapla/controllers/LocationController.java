@@ -54,10 +54,12 @@ public class LocationController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateLocation(@Valid Location location, BindingResult result){
+    public String updateLocation(@Valid Location location, BindingResult result,
+                                 @AuthenticationPrincipal CurrentUser customUser){
         if (result.hasErrors()) {
             return "/location/edit_location";
         }
+        location.setUserId(customUser.getUser().getId());
         locationService.saveLocation(location);
         return "redirect:/api/location/all";
     }

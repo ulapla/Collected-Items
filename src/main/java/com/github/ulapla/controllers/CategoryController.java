@@ -61,10 +61,12 @@ public class CategoryController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateCategory(@Valid Category category, BindingResult result){
+    public String updateCategory(@Valid Category category, BindingResult result,
+                                 @AuthenticationPrincipal CurrentUser customUser){
         if (result.hasErrors()) {
             return"category/edit_category";
         }
+        category.setUserId(customUser.getUser().getId());
         categoryService.saveCategory(category);
         return "redirect:/api/category/all";
     }

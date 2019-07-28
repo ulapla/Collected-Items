@@ -10,12 +10,12 @@
         </div>
 
         <div>
-            <form:form method="POST" enctype="multipart/form-data" action="/file/add" modelAttribute="item">
+            <form:form method="POST" enctype="multipart/form-data" action="/api/file/add" modelAttribute="item">
                 <form:hidden path="id"/>
 
                 <table>
-                    <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-                    <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+                    <tr><td>Wybierz plik:</td><td><input type="file" name="file" /></td></tr>
+                    <tr><td></td><td><input type="submit" value="Prześlij" /></td></tr>
                 </table>
             </form:form>
         </div>

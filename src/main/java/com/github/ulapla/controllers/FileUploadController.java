@@ -17,7 +17,7 @@ import com.github.ulapla.storage.StorageFileNotFoundException;
 import com.github.ulapla.storage.StorageService;
 
 @Controller
-@RequestMapping("/file")
+@RequestMapping("/api/file")
 public class FileUploadController {
 
     private final StorageService storageService;

@@ -98,10 +98,11 @@ public class ItemController {
     }
 
     @PostMapping("/edit/{id}")
-    public String saveItem(@Valid Item item,BindingResult result) {
+    public String saveItem(@Valid Item item,BindingResult result,@AuthenticationPrincipal CurrentUser customUser) {
         if (result.hasErrors()) {
             return "item/edit_item";
         }
+        item.setUserId(customUser.getUser().getId());
         itemService.saveItem(item);
         return "redirect:/api/item/show/" +item.getId();
     }
